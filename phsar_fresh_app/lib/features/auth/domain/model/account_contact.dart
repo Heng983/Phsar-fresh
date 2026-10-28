@@ -1,0 +1,1 @@
+enum AccountContact { phone, email }

@@ -1,0 +1,16 @@
+include: package:flutter_lints/flutter.yaml
+
+analyzer:
+  exclude:
+    - build/**
+    - android/**
+    - ios/**
+    - lib/generated/**
+
+linter:
+  rules:
+    # Use `package:phsar_fresh_app/...` imports inside lib/ instead of
+    # deep relative paths such as '../../../../core/...'.
+    always_use_package_imports: true
+    # Keep dart:, package: and relative imports grouped and sorted.
+    directives_ordering: true

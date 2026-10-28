@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Android 12+ masks the 288dp splash icon to a 192dp circle.
+     A 27% inset keeps even the square logo's corners inside that circle.
+     Reuse the generated bitmap so replacing splash_logo.png still works. -->
+<inset xmlns:android="http://schemas.android.com/apk/res/android"
+    android:insetLeft="27%"
+    android:insetTop="27%"
+    android:insetRight="27%"
+    android:insetBottom="27%">
+    <bitmap
+        android:src="@drawable/android12splash"
+        android:gravity="fill"
+        android:filter="true" />
+</inset>

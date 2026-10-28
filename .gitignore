@@ -1,0 +1,17 @@
+# macOS
+.DS_Store
+
+# Local AI assistant settings
+.claude/
+
+# Secrets (each app's .env.example is the template to commit)
+.env*
+!.env.example
+
+# Dependencies and build output
+node_modules/
+**/android/build/
+**/android/.gradle/
+
+# TypeScript build caches (contain local file paths)
+*.tsbuildinfo

@@ -1,0 +1,811 @@
+{
+  "@@locale": "en",
+  "authServicesPaused": "Account services are temporarily unavailable. You can still browse and try checkout.",
+  "marketChat": "AI Chat",
+  "chatTitle": "Ming Sros",
+  "chatSubtitle": "Your food companion",
+  "chatWelcomeTitle": "A fresh idea\nstarts here.",
+  "chatWelcomeBody": "Fresh picks, simple meals, and a little shopping help.",
+  "chatSuggestionsTitle": "A little inspiration to get started",
+  "chatFreshLabel": "Fresh picks",
+  "chatMealsLabel": "Meal ideas",
+  "chatFreshPrompt": "What’s fresh today?",
+  "chatMealsPrompt": "Help me plan a meal",
+  "chatInputHint": "Message Ming Sros…",
+  "chatSend": "Send message",
+  "chatReplyReceived": "Reply received",
+  "chatNewConversation": "New conversation",
+  "chatServiceUnavailable": "Chat is temporarily unavailable. Please try again later.",
+  "chatConnectionError": "Couldn't connect. Check your connection and try again.",
+  "chatRequestError": "I couldn't get a reply. Please try again.",
+  "chatRateLimited": "You're sending messages too fast. Please wait a moment and try again.",
+  "chatInvalidResponse": "The reply couldn't be displayed. Please try again.",
+  "chatRetry": "Try again",
+  "chatThinking": "Ming Sros is thinking…",
+  "chatOutOfStock": "Out of stock",
+  "chatRecipeTitle": "Ingredients for {dish}",
+  "chatRecipeServings": "For {count} people",
+  "chatRecipeNotSold": "Not sold at Phsar Fresh",
+  "@chatRecipeTitle": {
+    "placeholders": {
+      "dish": {
+        "type": "String"
+      }
+    }
+  },
+  "@chatRecipeServings": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "chatDemoNotice": "Demo · Sample replies and products",
+  "chatDemoGreeting": "Hi, I’m Ming Sros! I can show you meal ideas, ingredient lists, and simple recipes. What would you like to try?",
+  "chatDemoMealReply": "How about rice with stir-fried greens and an egg? Here are the ingredients. Tap one to browse sample products, or ask me for the recipe.",
+  "chatDemoIngredientsReply": "For rice with stir-fried greens and an egg, you’ll need:",
+  "chatDemoFreshReply": "Here are a few sample picks from our market. Tap an item to see its product details and try adding it to your basket.",
+  "chatDemoRecipeReply": "Rice with stir-fried greens & egg\nServes 2\n\n1. Rinse 1 cup of rice and cook according to the packet instructions.\n2. Wash and chop the greens. Heat a little oil in a pan and stir-fry until tender. Season to taste.\n3. Fry or scramble 2 eggs until cooked through.\n4. Serve the greens and eggs over the rice. Enjoy!",
+  "chatDemoLokLakReply": "For beef lok lak, you’ll need:\n\n• Beef (sirloin or ribeye)\n• Soy sauce\n• Oyster sauce\n• Garlic\n• Black pepper\n• Lettuce\n• Tomato\n• Onion\n• Lime\n\nAsk me for the recipe next!",
+  "chatDemoLokLakRecipe": "Beef lok lak\nServes 2\n\n1. Cut 300 g of beef into bite-size pieces. Mix with 1 tbsp soy sauce, 1 tbsp oyster sauce, 2 minced garlic cloves, and black pepper. Marinate for 15 minutes.\n2. Arrange washed lettuce, sliced tomato, and onion on a plate.\n3. Heat a little oil in a pan. Stir-fry the beef in small batches until cooked to your liking.\n4. Serve over the vegetables with rice. Mix lime juice and black pepper for a dipping sauce.",
+  "chatDemoThanks": "You’re welcome! Would you like another meal idea, some fresh picks, or a recipe?",
+  "chatDeliveryReply": "Open Explore or Categories and tap the location in the header to choose your delivery address. Use the map, search, or enter an address, then save it. You can review your address and delivery choices in the checkout preview.",
+  "chatOrdersReply": "Tap Orders in the navigation bar to see your active orders and order history. This preview cannot look up or change an order. For general shopping questions, you can also find help in Profile.",
+  "chatFallbackReply": "In this demo, I can help with meal ideas, ingredients, recipes, fresh picks, and shopping questions. Try “Help me plan a meal” or “What ingredients do I need?”",
+  "appName": "PHSAR FRESH",
+  "appNameKhmer": "ផ្សារស្រស់",
+  "farmFresh": "100% Farm Fresh",
+  "heroDescription": "Directly harvested from Battambang, Kandal & Kampot",
+  "mainTitle": "Phsar Fresh",
+  "mainSubtitle": "Freshness from\nCambodia’s Rich Soil",
+  "khmerTagline": "ផ្សារស្រស់ • កសិផលខ្មែរស្រស់ៗពីចម្ការ",
+  "mainDescription": "Handpicked organic vegetables, Battambang fruits, and Kampot specialties delivered fresh to your door in 30 mins.",
+  "organicTitle": "100% Organic & GAP Certified",
+  "organicDescription": "Guaranteed chemical-free greens, rigorously tested and certified by the Ministry of Agriculture.",
+  "gapBadge": "Cambodia GAP",
+  "deliveryTitle": "Farm-to-Door Delivery",
+  "deliveryDescription": "Packed in eco-insulated woven containers to preserve garden crispness directly to your table.",
+  "deliveryTime": "30 Mins",
+  "fairTradeTitle": "Direct Fair Trade with Local Farmers",
+  "fairTradeDescription": "100% of fair profits support smallholder farming communities across Cambodia.",
+  "getStarted": "Get Started",
+  "alreadyAccount": "Already have an account?",
+  "signIn": "Sign In",
+  "farmFooter": "Proudly empowering 450+ Khmer family farms",
+  "authEyebrow": "Farm-to-table gourmet",
+  "authWelcome": "Welcome to Phsar Fresh",
+  "authFreshProduce": "Fresh Local Produce",
+  "authKhmerName": "ផ្សារស្រស់",
+  "authDescription": "Discover fresh organic harvests, Kampot peppers & artisanal treasures delivered fresh to your kitchen.",
+  "authRegister": "Register",
+  "authPhoneNumber": "Phone Number",
+  "authPhoneHint": "Enter mobile number",
+  "authPassword": "Password",
+  "authPasswordHint": "Enter password",
+  "authUseOtp": "Use OTP",
+  "authUsePassword": "Use password",
+  "authOtpCode": "Verification code",
+  "authOtpHint": "Enter 6-digit code",
+  "authSendCode": "Send code",
+  "authVerifyCode": "Verify & Log In",
+  "authShowPassword": "Show password",
+  "authHidePassword": "Hide password",
+  "authConfirmPassword": "Confirm password",
+  "authConfirmPasswordHint": "Re-enter password",
+  "authRememberMe": "Remember me",
+  "authForgotPassword": "Forgot password?",
+  "authLoginToShop": "Log In to Shop",
+  "authCreateAccount": "Create Account",
+  "authContinueWith": "Or continue with",
+  "authContinueGoogle": "Continue with Google",
+  "authContinueFacebook": "Continue with Facebook",
+  "authContinueApple": "Continue with Apple",
+  "authAgreementPrefix": "By continuing, you agree to the",
+  "authAgreementAnd": "and",
+  "authAgreementSuffix": "of Phsar Fresh Cambodia.",
+  "authTerms": "Terms of Service",
+  "authPrivacy": "Privacy Policy",
+  "authSupport": "Need help? Contact Telegram Customer Support",
+  "authInvalidPhone": "Enter a valid Cambodian mobile number.",
+  "authRequiredPassword": "Enter your password.",
+  "authShortPassword": "Use at least 8 characters for your password.",
+  "authPasswordMismatch": "The passwords do not match.",
+  "authInvalidOtp": "Enter a 6-digit verification code.",
+  "authUnavailable": "This service is currently unavailable. Please try again later.",
+  "authOtpSignInHelp": "Use an SMS code to sign in without your password.",
+  "authServiceError": "The authentication service couldn’t complete your request. Please try again later.",
+  "authUnexpectedError": "Something went wrong. Please try again.",
+  "authConnectionError": "Unable to connect. Check your internet connection and try again.",
+  "authNoSession": "Sign-in could not be completed. Please try again.",
+  "authInvalidCredentials": "Wrong phone number or password.",
+  "authInvalidCode": "That code is wrong or has expired. Check the SMS or request a new code.",
+  "authPhoneInUse": "This phone number is already registered. Log in instead.",
+  "authTooManyAttempts": "Too many attempts. Please wait a minute and try again.",
+  "authPhoneConfirmationRequired": "Verify your phone number to continue. Tap Send code to receive a new SMS.",
+  "authCheckoutTitle": "Continue to checkout",
+  "authCheckoutDescription": "Sign in or create an account with your phone number. Your basket is saved.",
+  "authOtpWelcome": "One more step to your fresh local finds.",
+  "authOtpInstructions": "Enter the 6-digit code sent to your phone to continue.",
+  "authDidNotReceiveCode": "Didn’t receive a code?",
+  "authEnterVerificationCode": "Enter your verification code",
+  "authResendCode": "Resend code",
+  "authChangeNumber": "Change phone number",
+  "authVerifyPhone": "Verify your phone number",
+  "authCodeSent": "We sent a verification code to {phone}. Enter it below to continue.",
+  "authResendIn": "Send again in {seconds}s",
+  "authAccountDescription": "You are signed in to Phsar Fresh.",
+  "authSignOut": "Sign Out",
+  "@authCodeSent": {
+    "placeholders": {
+      "phone": {
+        "type": "String"
+      }
+    }
+  },
+  "@authResendIn": {
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "marketBrowseGuest": "Browse as guest",
+  "marketBrand": "Phsar Fresh",
+  "marketNotifications": "Notifications",
+  "notificationsEmptyTitle": "You're all caught up",
+  "notificationsEmptyBody": "Order updates and new promotions will show up here.",
+  "notificationsPromotion": "New promotion",
+  "notificationOrderPlacedTitle": "Order placed",
+  "notificationOrderPlacedBody": "We received order {code}. We'll let you know when it's being prepared.",
+  "@notificationOrderPlacedBody": {
+    "placeholders": {
+      "code": {"type": "String"}
+    }
+  },
+  "notificationOrderPaidTitle": "Payment received",
+  "notificationOrderPaidBody": "Order {code} is paid. The market team will start preparing it.",
+  "@notificationOrderPaidBody": {
+    "placeholders": {
+      "code": {"type": "String"}
+    }
+  },
+  "notificationOrderPreparingTitle": "Preparing your order",
+  "notificationOrderPreparingBody": "Order {code} is being packed with fresh produce.",
+  "@notificationOrderPreparingBody": {
+    "placeholders": {
+      "code": {"type": "String"}
+    }
+  },
+  "notificationOrderDeliveringTitle": "On the way",
+  "notificationOrderDeliveringBody": "Your rider is bringing order {code}.",
+  "@notificationOrderDeliveringBody": {
+    "placeholders": {
+      "code": {"type": "String"}
+    }
+  },
+  "notificationOrderDeliveredTitle": "Delivered",
+  "notificationOrderDeliveredBody": "Order {code} has arrived. Enjoy!",
+  "@notificationOrderDeliveredBody": {
+    "placeholders": {
+      "code": {"type": "String"}
+    }
+  },
+  "notificationMessageTitle": "Update on order {code}",
+  "@notificationMessageTitle": {
+    "placeholders": {
+      "code": {"type": "String"}
+    }
+  },
+  "notificationMessageProblemTitle": "Problem with order {code}",
+  "@notificationMessageProblemTitle": {
+    "placeholders": {
+      "code": {"type": "String"}
+    }
+  },
+  "notificationMessageCancelledTitle": "Order {code} was cancelled",
+  "@notificationMessageCancelledTitle": {
+    "placeholders": {
+      "code": {"type": "String"}
+    }
+  },
+  "notificationOrderCancelledTitle": "Order cancelled",
+  "notificationOrderCancelledBody": "Order {code} was cancelled.",
+  "@notificationOrderCancelledBody": {
+    "placeholders": {
+      "code": {"type": "String"}
+    }
+  },
+  "marketSearchHint": "Search fresh vegetables, fruits, spices.",
+  "marketClearSearch": "Clear search",
+  "marketVoiceSearchHelp": "Type a product or origin in the search field.",
+  "marketFilters": "Filters",
+  "marketAllItems": "All Items",
+  "marketFlashDeal": "Flash harvest deal",
+  "marketDealTitle": "Special 20% off Battambang Citrus",
+  "marketClaimDeal": "Claim Deal",
+  "marketAddedToCart": "Added to cart",
+  "marketDealEnded": "Deal ended",
+  "marketItemCount": "{count, plural, one{1 item} other{{count} items}}",
+  "marketExplore": "Explore",
+  "marketCategories": "Categories",
+  "marketOrders": "Orders",
+  "marketViewCart": "View cart",
+  "marketCart": "Cart",
+  "marketProfile": "Profile",
+  "marketSortBy": "Sort by",
+  "marketInStockOnly": "In stock only",
+  "catalogLoadError": "Couldn't load products",
+  "catalogLoadErrorBody": "Check your connection and try again.",
+  "catalogRetry": "Try again",
+  "catalogLoadMore": "Load more",
+  "catalogOutOfStock": "Out of stock",
+  "catalogAllProducts": "All products",
+  "catalogNoProductsInCategory": "No products in this category yet.",
+  "marketSortCurated": "Curated",
+  "marketSortName": "Name",
+  "marketSortCount": "Most items",
+  "marketApplyFilters": "Apply filters",
+  "marketResetFilters": "Reset filters",
+  "marketClose": "Close",
+  "marketNoResults": "No matching pantries",
+  "marketNoResultsDescription": "Try another search or choose a different category.",
+  "marketNoOrders": "No orders yet",
+  "marketNoOrdersDescription": "Your orders will appear here once you start shopping.",
+  "marketContinueShopping": "Continue shopping",
+  "marketEmptyCart": "Your basket is empty",
+  "marketEmptyCartDescription": "Explore fresh local collections to fill your basket.",
+  "marketYourBasket": "Your Basket",
+  "marketSubtotal": "Subtotal",
+  "marketDecreaseQuantity": "Decrease quantity",
+  "marketIncreaseQuantity": "Increase quantity",
+  "marketGuest": "Welcome, Guest",
+  "marketGuestDescription": "Browse fresh collections as a guest. Sign in to manage your account.",
+  "marketLanguage": "Language",
+  "marketDeliveryLocation": "Delivery location",
+  "marketLocationLabel": "City, district or address",
+  "marketSaveLocation": "Save location",
+  "@marketItemCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "exploreTodayHarvest": "Today's harvest deals",
+  "exploreWelcome": "Fresh finds from Cambodian farms, ready for your kitchen.",
+  "exploreShopCategories": "Shop by category",
+  "exploreFreshArrivals": "Fresh arrivals",
+  "exploreFreshSubtitle": "Discover seasonal produce and fresh local picks.",
+  "explorePopular": "Popular this week",
+  "explorePopularSubtitle": "Local favorites for your everyday basket.",
+  "exploreMingSrosTitle": "Meet Ming Sros, your AI kitchen helper",
+  "exploreMingSrosBody": "Ask what to cook tonight and get a ready shopping list.",
+  "exploreMingSrosAction": "Ask Ming Sros",
+  "exploreSeeAll": "See all",
+  "exploreProducts": "Shop fresh products",
+  "exploreDiscover": "Back to discovery",
+  "exploreNoProducts": "No matching products",
+  "exploreAddToCart": "Add to Cart",
+  "exploreOrganic": "Organic",
+  "explorePopularFirst": "Popular first",
+  "marketGreensPromotion": "20% off organic greens",
+  "marketFruitsPromotion": "20% off tropical fruits",
+  "marketPromotionPosition": "Promotion {index} of {count}",
+  "@marketPromotionPosition": {
+    "placeholders": {
+      "index": {
+        "type": "int"
+      },
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "productOrganicFresh": "Organic & farm fresh",
+  "productOrigin": "Origin",
+  "productViewFarm": "View Farm",
+  "productPackSize": "Pack Size",
+  "productPopular": "Popular",
+  "product250g": "250g Pack",
+  "product500g": "500g Bundle",
+  "product1kg": "1kg Family Pack",
+  "productSinglePack": "1 Pack",
+  "productDoublePack": "2 Packs",
+  "productSixEggs": "6 Eggs",
+  "productDozenEggs": "12 Eggs",
+  "productMoreLikeThis": "You may also like",
+  "productQuantity": "Quantity",
+  "productAddBasket": "Add to Basket",
+  "productSaved": "Save to favorites",
+  "productUnsaved": "Remove from favorites",
+  "productCopy": "Copy product details",
+  "productCopied": "Product details copied",
+  "productFarmStory": "From the farm to your kitchen",
+  "productFarmDescription": "Our local catalog highlights Cambodian growers and cooperatives, with fresh harvests selected for everyday cooking.",
+  "cartEyebrow": "Fresh from local farms",
+  "cartSubtitle": "A little local goodness, ready for your kitchen.",
+  "cartItemRemoved": "Removed from basket",
+  "commonRemove": "Remove",
+  "commonUndo": "Undo",
+  "cartRemoveItem": "Remove {name} from basket",
+  "cartVoucherCode": "Voucher code",
+  "cartVoucherHint": "Use {code} to save up to {amount} on your basket.",
+  "cartApplyVoucher": "Apply voucher",
+  "cartInvalidVoucher": "This code is not valid. Check it and try again.",
+  "cartVoucherApplied": "{code} applied (−{amount})",
+  "cartRemoveVoucher": "Remove voucher",
+  "cartPackagingTitle": "Thoughtfully packed, naturally fresh",
+  "cartPackagingDescription": "Banana leaf & recycled kraft packaging included.",
+  "cartOrderSummary": "Order Summary",
+  "cartVoucherDiscount": "Voucher discount",
+  "cartDelivery": "Eco-friendly delivery",
+  "cartTotalPayable": "Total payable",
+  "cartFarmerSupport": "Every basket supports Cambodian farmers.",
+  "cartCheckout": "Proceed to Checkout",
+  "@cartRemoveItem": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "@cartVoucherHint": {
+    "placeholders": {
+      "code": {
+        "type": "String"
+      },
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "@cartVoucherApplied": {
+    "placeholders": {
+      "code": {
+        "type": "String"
+      },
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "marketCurrency": "Currency",
+  "currencyUsd": "US Dollar ($)",
+  "currencyKhr": "Cambodian Riel (៛)",
+  "currencyExchangeRate": "Display rate: $1 = 4,100៛ (fixed demo rate).",
+  "currencyConvertedNote": "Approximate converted price",
+  "checkoutTitle": "Checkout",
+  "checkoutDeliveryAddress": "Delivery address",
+  "checkoutChange": "Change ›",
+  "checkoutAddRecipient": "Add recipient name and phone number",
+  "checkoutLocalFresh": "Thoughtfully packed, fresh from local farms",
+  "checkoutEditAddress": "Delivery details",
+  "checkoutRecipientName": "Recipient name",
+  "checkoutNameRequired": "Enter the recipient’s name.",
+  "checkoutStreetAddress": "Street, house number & delivery area",
+  "checkoutAddressRequired": "Enter a delivery address.",
+  "checkoutDeliveryWindow": "Delivery Window",
+  "checkoutFreshlyPrepared": "Freshly prepared",
+  "checkoutExpress": "Express (30 mins)",
+  "checkoutExpressArrives": "Arrives by {time}",
+  "@checkoutExpressArrives": {
+    "placeholders": {
+      "time": {"type": "String"}
+    }
+  },
+  "checkoutSchedule": "Schedule for later",
+  "checkoutScheduleDescription": "Pick a day and time that suits you",
+  "checkoutScheduledSlot": "{day}, {start} – {end}",
+  "@checkoutScheduledSlot": {
+    "placeholders": {
+      "day": {"type": "String"},
+      "start": {"type": "String"},
+      "end": {"type": "String"}
+    }
+  },
+  "checkoutChooseDay": "Choose a day",
+  "checkoutChooseTime": "Choose a time",
+  "checkoutFastest": "FASTEST",
+  "checkoutToday": "Today",
+  "checkoutTomorrow": "Tomorrow",
+  "checkoutInstructions": "Special instructions",
+  "checkoutInstructionsHint": "e.g. Leave at the front gate security",
+  "checkoutInstructionsHelp": "A little note for your delivery driver",
+  "checkoutPaymentMethod": "Payment Method",
+  "checkoutAbaPay": "ABA KHQR",
+  "checkoutAbaPayDescription": "Pay with KHQR code",
+  "checkoutAbaPayHint": "Scan the QR code to pay with any banking app.",
+  "checkoutCard": "Credit/Debit Card",
+  "checkoutCardDescription": "Pay with a debit or credit card",
+  "checkoutCash": "Cash on delivery",
+  "checkoutCashDescription": "Pay in cash when your order arrives",
+  "checkoutItemQuantity": "Qty: {count} · {pack}",
+  "checkoutDeliveryFee": "Delivery fee",
+  "checkoutPackaging": "Packaging & eco box",
+  "checkoutIncluded": "Included",
+  "checkoutTotalDue": "Total amount due",
+  "checkoutPayable": "Payable in USD & KHR",
+  "checkoutPayAbaPay": "Place order & pay with ABA PAY · {amount}",
+  "checkoutPayCard": "Place order & pay by card · {amount}",
+  "checkoutPlaceCashOrder": "Place order · Pay on delivery · {amount}",
+  "checkoutComingSoon": "Checkout is coming soon",
+  "checkoutUnavailable": "Order placement and payments are not available yet. Your basket and checkout choices are saved for this session.",
+  "@checkoutItemQuantity": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "pack": {
+        "type": "String"
+      }
+    }
+  },
+  "@checkoutPayAbaPay": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "@checkoutPayCard": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "@checkoutPlaceCashOrder": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "ordersEyebrow": "Your farm-fresh journey",
+  "ordersTitle": "My orders",
+  "ordersSubtitle": "Follow your delivery. Find your favourites again.",
+  "ordersActiveCount": "{count} active",
+  "ordersActiveTab": "Active ({count})",
+  "ordersHistoryTab": "History ({count})",
+  "ordersSampleNotice": "Sample orders · Tracking preview",
+  "ordersTrackingPreview": "Tracking preview",
+  "ordersDeliveryUpdate": "Delivery update",
+  "ordersReference": "Order #{id}",
+  "ordersPlacedAt": "Placed {day}, {time}",
+  "ordersYesterday": "Yesterday",
+  "ordersConfirmed": "Confirmed",
+  "ordersPacked": "Packed",
+  "ordersOnTheWay": "On the way",
+  "ordersDelivered": "Delivered",
+  "ordersCancelled": "Cancelled",
+  "ordersStepComplete": "{step}, complete",
+  "ordersArrivingIn": "Arriving in about {minutes} mins",
+  "ordersDeliveryInProgress": "Your delivery is in progress",
+  "ordersCourierPending": "Finding your delivery partner",
+  "ordersDeliveryPartner": "Your delivery partner",
+  "ordersViewDetails": "View order details",
+  "ordersDetailsTitle": "Order details",
+  "ordersReceipt": "Receipt",
+  "ordersDeliveredOn": "Delivered · {day}",
+  "ordersMoreItems": "+{count} more",
+  "ordersLeftAtReception": "Delivered to front desk reception",
+  "ordersHandedToCustomer": "Handed to the recipient with care",
+  "ordersReorder": "Reorder items",
+  "ordersReorderAdded": "Items added to your basket. Review before checkout.",
+  "ordersHistoryTitle": "Order history",
+  "ordersRecentPurchases": "Recent purchases",
+  "ordersSeeAll": "See all",
+  "ordersNoActive": "All caught up",
+  "ordersNoActiveDescription": "Your next fresh delivery will appear here.",
+  "ordersNoHistory": "Your story starts with a basket",
+  "ordersNoHistoryDescription": "Your past orders will be saved here for easy reordering.",
+  "ordersHelpTitle": "Need a hand with an order?",
+  "ordersHelpSubtitle": "Delivery, items or payment — find a little guidance.",
+  "ordersGetHelp": "Get help",
+  "ordersHelpDelivery": "Where is my delivery?",
+  "ordersHelpDeliveryAnswer": "Open order details to review the delivery address and the latest available status. The progress steps show when your basket is confirmed, packed, on the way and delivered.",
+  "ordersHelpItems": "An item is missing or damaged",
+  "ordersHelpItemsAnswer": "Check the item list in your receipt first. Keep your order number and a photo of any affected items ready when contacting the store.",
+  "ordersHelpPayment": "I have a payment question",
+  "ordersHelpPaymentAnswer": "Your receipt shows the payment method, item total, delivery fee and any discount recorded for the order. Reordering adds items to your basket so you can review current prices before checkout.",
+  "@ordersActiveCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@ordersActiveTab": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@ordersHistoryTab": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@ordersReference": {
+    "placeholders": {
+      "id": {
+        "type": "String"
+      }
+    }
+  },
+  "@ordersPlacedAt": {
+    "placeholders": {
+      "day": {
+        "type": "String"
+      },
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "@ordersStepComplete": {
+    "placeholders": {
+      "step": {
+        "type": "String"
+      }
+    }
+  },
+  "@ordersArrivingIn": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "@ordersDeliveredOn": {
+    "placeholders": {
+      "day": {
+        "type": "String"
+      }
+    }
+  },
+  "@ordersMoreItems": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "ordersItemsUnavailable": "These items are no longer available in the current catalog.",
+  "profileCustomer": "Fresh food lover",
+  "profileGuestBadge": "A little fresher, every day",
+  "profileMemberBadge": "Supporting local, together",
+  "profileOrdersMade": "Orders made",
+  "profileSavedFavorites": "Saved favorites",
+  "profileCommunity": "Shopping & community",
+  "profileFavorites": "My favorite products",
+  "profileFavoritesHint": "Your fresh finds, all in one place",
+  "profileFavoritesEmpty": "Your next favorite is waiting",
+  "profileFavoritesEmptyHint": "Tap the heart on a product to keep it here for your next visit.",
+  "profileExplore": "Explore fresh finds",
+  "profileRemoveFavorite": "Remove from favorites",
+  "profileDelivery": "Delivery details",
+  "profileDeliveryHint": "Set your address and recipient for checkout",
+  "profilePayment": "Preferred payment",
+  "profilePaymentHint": "Choose your default for this visit. Payment is completed at checkout when ordering is available.",
+  "profilePreferences": "Preferences & language",
+  "profileLanguageHint": "Make yourself at home",
+  "profileSupport": "Support & peace of mind",
+  "profileHelp": "Help & support",
+  "profileHelpHint": "Answers about delivery, products & payments",
+  "profileSourcing": "From farm to your table",
+  "profileSourcingHint": "Get to know your fresh food",
+  "profileSourcingBody": "Explore each product to see its farm origin, pack sizes and product information. Supplier and certification details should be checked on the product listing when available. The current catalog includes demonstration content.",
+  "profilePrivacy": "Your account & privacy",
+  "profilePrivacyHint": "How sign-in and your basket work",
+  "profilePrivacyBody": "You can browse and build a basket before signing in. Your basket is saved on this device. Sign-in is required at checkout. Remember me keeps your session across app restarts; signing out ends the session on this device. Favorites and delivery preferences currently last for this app session.",
+  "profileEdit": "Edit profile",
+  "profileDisplayName": "Display name",
+  "profileEditHint": "Manage your personal details and the accounts you use to sign in.",
+  "profileNameRequired": "Enter your name.",
+  "profileSave": "Save changes",
+  "profileSaved": "Your profile has been updated.",
+  "profileSaveError": "We couldn’t save your profile. Please try again.",
+  "profileFooter": "Fresh from Cambodian farms to your door",
+  "profileVersion": "Phsar Fresh · Version {version}",
+  "@profileVersion": {
+    "placeholders": {
+      "version": {"type": "String"}
+    }
+  },
+  "profileGuestCta": "Sign in to make it yours",
+  "profileEmail": "Email address",
+  "profileNotAdded": "Not added",
+  "profileChangePhone": "Change phone number",
+  "profileChangeEmail": "Change email address",
+  "profilePhoneChangeHint": "Enter your new Cambodian mobile number. We’ll send a code to confirm it before changing your sign-in number.",
+  "profileEmailChangeHint": "We’ll send a confirmation link to your new email. If you already have an email on this account, you may need to confirm from both inboxes.",
+  "profileInvalidEmail": "Enter a valid email address.",
+  "profileSameContact": "Enter a different phone number or email.",
+  "profileNewPhone": "New phone number",
+  "profileNewEmail": "New email address",
+  "profileSendConfirmation": "Send confirmation",
+  "profileEmailSent": "Check your email for the confirmation link. Return here after confirming to check the update.",
+  "profilePhoneSent": "Enter the SMS code sent to your new phone number. Your current number stays active until verification is complete.",
+  "profileContactUpdated": "Your contact details have been updated.",
+  "profileContactError": "We couldn’t update your contact details. Please try again.",
+  "profileCodeError": "We couldn’t verify this code. Check the code or request a new one.",
+  "profileCheckStatus": "Check status",
+  "profileStillPending": "Still waiting for confirmation. Check your messages and try again.",
+  "profilePending": "Pending confirmation",
+  "profileVerifyPhone": "Verify new number",
+  "profileUseDifferentContact": "Use a different phone or email",
+  "profileResendConfirmation": "Resend confirmation",
+  "profileLinkedAccounts": "Linked accounts",
+  "profileLinkedAccountsHint": "Link Google or Facebook to sign in to this same Phsar Fresh account.",
+  "profileLinkAccount": "Link account",
+  "profileConnected": "Connected",
+  "profileNotLinked": "Not linked",
+  "profileFinishLinking": "Complete the connection in your browser, then return here. An account is connected only after confirmation.",
+  "profileLinkError": "We couldn’t link this account. Please try again.",
+  "profileLinkUnavailable": "Account linking is currently unavailable. Please try again later.",
+  "profileIdentityInUse": "This Google or Facebook account is already linked to another account.",
+  "profileLinkNotComplete": "The connection isn’t complete yet. You can try linking again.",
+  "profileMoreVerification": "This code was accepted. If another confirmation code was sent to your current number, enter that code to finish the change.",
+  "authSocialPending": "Finish signing in in your browser, then return to the app.",
+  "profilePhoto": "Profile photo",
+  "profileChangePhoto": "Change photo",
+  "profileChoosePhoto": "Choose from photos",
+  "profileTakePhoto": "Take a photo",
+  "profileRemovePhoto": "Remove photo",
+  "profilePhotoHint": "Choose a clear photo. Your changes are saved when you tap Save changes.",
+  "profileCropPhoto": "Adjust your photo",
+  "profileCropHint": "Drag to position your photo and pinch or use the slider to zoom. The circle shows how it will appear on your profile.",
+  "profilePhotoZoom": "Photo zoom",
+  "profileResetCrop": "Reset crop",
+  "profileUsePhoto": "Use this photo",
+  "profilePhotoInvalid": "We couldn’t open this photo. Choose a different image under 10 MB.",
+  "profilePhotoPermission": "Photo or camera access is unavailable. Allow access in your device settings, then try again.",
+  "profilePhotoUnavailable": "Photo selection is unavailable. Close and reopen the app, then try again.",
+  "profilePhotoPickerError": "We couldn’t open the photo picker. Please try again.",
+  "profileCameraUnavailable": "No camera is available on this device. Choose a photo from your library.",
+  "profilePhotoSaveError": "We couldn’t finish saving your photo. Please try again.",
+  "locationMapHint": "Tap the map to place your delivery pin, or use your current location.",
+  "locationUseCurrent": "Use my location",
+  "locationFinding": "Finding your location…",
+  "locationLiveAccuracy": "Live location · accuracy about {meters} m",
+  "locationPermissionDenied": "Location access was denied. You can try again or choose a pin on the map.",
+  "locationPermissionBlocked": "Allow location access in your device settings, or choose a pin on the map.",
+  "locationServicesDisabled": "Turn on your device’s location services, or choose a pin on the map.",
+  "locationUnavailable": "We couldn’t get your location. Try again or choose a pin on the map.",
+  "locationOpenSettings": "Open settings",
+  "locationSearch": "Find address on map",
+  "locationSearchFailed": "We couldn’t find this address. Try a nearby landmark or place the pin yourself.",
+  "locationChooseOnMap": "Choose on map",
+  "locationSaveError": "We couldn’t save your location. Please try again.",
+  "@locationLiveAccuracy": {
+    "placeholders": {
+      "meters": {
+        "type": "int"
+      }
+    }
+  },
+  "locationMapUnavailable": "The map is unavailable right now. You can still use your location or enter an address.",
+  "addressDetailsTitle": "Address details",
+  "addressDetailsHint": "Optional details to help your driver find your door.",
+  "addressSaveAs": "Label this address",
+  "addressHome": "Home",
+  "addressWork": "Work",
+  "addressPartner": "Partner",
+  "addressOther": "Other",
+  "addressCustomLabel": "Custom label",
+  "addressCustomLabelRequired": "Enter a name for this address.",
+  "addressHouseNumber": "House / building no.",
+  "addressStreet": "Street",
+  "addressNote": "Address notes",
+  "addressNoteHint": "Floor, gate, nearby landmark or directions",
+  "cartVoucherHintRemote": "Have a promo code? Enter it to save on your basket.",
+  "cartVoucherExpired": "This code has expired.",
+  "cartVoucherNotStarted": "This code can't be used yet.",
+  "cartVoucherMinOrder": "This code needs a basket of at least {amount}.",
+  "cartVoucherCheckFailed": "Couldn't check the code. Check your connection and try again.",
+  "cartVoucherAddMore": "Add {amount} more to use {code}.",
+  "@cartVoucherMinOrder": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "@cartVoucherAddMore": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      },
+      "code": {
+        "type": "String"
+      }
+    }
+  },
+  "cartVoucherLoginRequired": "Sign in to use this code.",
+  "cartVoucherNotNewCustomer": "This code is for your first order only.",
+  "cartVoucherAlreadyUsed": "You've already used this code.",
+  "checkoutPlacing": "Placing your order…",
+  "checkoutNeedLocationTitle": "Where should we deliver?",
+  "checkoutNeedLocation": "Pin your delivery location on the map so the driver can find you.",
+  "orderSuccessTitle": "Order placed!",
+  "orderSuccessBody": "Thank you! The market team is getting your fresh basket ready.",
+  "orderSuccessCode": "Order number",
+  "orderSuccessTrack": "Track my order",
+  "checkoutOrderPlacedTitle": "Order placed",
+  "checkoutOrderPlaced": "Thank you! Your order {code} for {total} is on its way to the market team.",
+  "checkoutOrderFailedTitle": "Couldn't place your order",
+  "checkoutOrderFailed": "Something went wrong. Check your connection and try again.",
+  "checkoutSignInToOrder": "Sign in to your account to place an order.",
+  "checkoutVoucherRemoved": "{reason} We removed the code — check your new total and place the order again.",
+  "@checkoutOrderPlaced": {
+    "placeholders": {
+      "code": {
+        "type": "String"
+      },
+      "total": {
+        "type": "String"
+      }
+    }
+  },
+  "@checkoutVoucherRemoved": {
+    "placeholders": {
+      "reason": {
+        "type": "String"
+      }
+    }
+  },
+  "khqrTitle": "Pay with ABA KHQR",
+  "khqrOrder": "Order {code}",
+  "khqrScanHint": "Scan with Bakong App or Mobile Banking app that supports KHQR",
+  "khqrOpenAba": "Open ABA Mobile",
+  "khqrAbaMissing": "ABA Mobile isn't installed on this phone. Scan the QR with another phone or bank app.",
+  "khqrWaiting": "Waiting for payment",
+  "khqrExpiresIn": "expires in {time}",
+  "khqrExpired": "This QR has expired.",
+  "khqrFailed": "The payment didn't go through.",
+  "khqrNewQr": "Get a new QR",
+  "khqrError": "Couldn't create the ABA KHQR.",
+  "khqrTryAgain": "Try again",
+  "khqrPaidTitle": "Payment received",
+  "khqrPaidBody": "Thank you! Order {code} is paid and the market team is preparing it.",
+  "khqrDone": "Done",
+  "khqrLeaveTitle": "Leave without paying?",
+  "khqrLeaveBody": "Your order is saved, but we only start preparing it once it's paid.",
+  "khqrStay": "Stay and pay",
+  "khqrLeave": "Leave",
+  "@khqrOrder": {
+    "placeholders": {
+      "code": {
+        "type": "String"
+      }
+    }
+  },
+  "@khqrExpiresIn": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "@khqrPaidBody": {
+    "placeholders": {
+      "code": {
+        "type": "String"
+      }
+    }
+  },
+  "khqrTestModeNote": "Test mode: this QR is not real and no money moves.",
+  "khqrSimulatePay": "Simulate payment (test)",
+  "ordersAwaitingPayment": "Waiting for payment",
+  "ordersPaymentNeeded": "Pay with ABA KHQR and we'll start preparing it",
+  "ordersPayNow": "Pay now",
+  "ordersSignInTitle": "Sign in to see your orders",
+  "ordersSignInBody": "Your orders and delivery updates show up here once you're signed in.",
+  "ordersLoadFailed": "Couldn't load your orders",
+  "ordersLoadFailedBody": "Check your connection, then try again or pull down to refresh.",
+  "ordersRetry": "Try again"
+}

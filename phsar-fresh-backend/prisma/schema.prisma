@@ -1,0 +1,325 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+// The connection URL lives in prisma.config.ts (CLI) and
+// src/prisma/prisma.service.ts (the app), as Prisma 7 requires.
+datasource db {
+  provider = "postgresql"
+}
+
+enum Role {
+  CUSTOMER
+  DRIVER
+  SUPER_ADMIN // admin panel: everything, including the team
+  MANAGER // admin panel: catalog, orders, dashboard
+  STAFF // admin panel: orders and stock
+}
+
+enum AuthProvider {
+  GOOGLE
+  FACEBOOK
+  APPLE
+}
+
+enum OrderStatus {
+  PENDING
+  PAID
+  PREPARING
+  DELIVERING
+  DELIVERED
+  CANCELLED
+}
+
+model User {
+  id            String         @id @default(uuid())
+  phone         String?        @unique
+  phoneVerified Boolean        @default(false)
+  name          String?
+  passwordHash  String?
+  avatarUrl     String?
+  role          Role           @default(CUSTOMER)
+  disabledAt    DateTime? // set = cannot sign in
+  addresses     Address[]
+  orders        Order[]
+  redemptions   DiscountRedemption[]
+  orderEvents   OrderEvent[]
+  sentMessages  OrderMessage[]
+  identities    AuthIdentity[]
+  refreshTokens RefreshToken[]
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+}
+
+/// Permissions a Super admin granted to MANAGER / STAFF in the admin panel.
+/// No row for a role = the defaults in src/admin/permissions.ts.
+model RolePermission {
+  role        Role     @id
+  permissions String[]
+  updatedAt   DateTime @updatedAt
+}
+
+model AuthIdentity {
+  id             String       @id @default(uuid())
+  userId         String
+  user           User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  provider       AuthProvider
+  providerUserId String
+
+  @@unique([provider, providerUserId])
+}
+
+model RefreshToken {
+  id        String    @id @default(uuid())
+  userId    String
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  tokenHash String    @unique
+  expiresAt DateTime
+  revokedAt DateTime?
+  createdAt DateTime  @default(now())
+
+  @@index([userId])
+}
+
+model Address {
+  id     String  @id @default(uuid())
+  userId String
+  user   User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  label  String
+  lat    Float
+  lng    Float
+  detail String?
+}
+
+model Category {
+  id       String    @id @default(uuid())
+  name     String    @unique
+  nameKm   String?
+  imageUrl String? // set in the admin panel; shown on "Shop by category"
+  products Product[]
+  promotions Promotion[]
+}
+
+model Product {
+  id          String      @id @default(uuid())
+  categoryId  String
+  category    Category    @relation(fields: [categoryId], references: [id])
+  name        String
+  nameKm      String?
+  description String?
+  origin      String?
+  priceCents  Int
+  stock       Int
+  unit        String
+  imageUrl    String?
+  isActive    Boolean     @default(true)
+  orderItems  OrderItem[]
+  promotions  Promotion[]
+
+  @@index([name])
+
+  @@index([categoryId])
+  @@index([isActive, stock, name])
+}
+
+enum PaymentMethod {
+  ABA_PAY
+  CARD
+  CASH
+}
+
+model Order {
+  id             String              @id @default(uuid())
+  userId         String
+  user           User                @relation(fields: [userId], references: [id])
+  status         OrderStatus         @default(PENDING)
+  subtotalCents  Int                 @default(0)
+  discountCents  Int                 @default(0)
+  discountCode   String? // snapshot of the code used, e.g. WELCOME
+  totalCents     Int // subtotal - discount + delivery
+  deliveryCents  Int
+  paymentMethod  PaymentMethod       @default(CASH)
+  addressLat     Float
+  addressLng     Float
+  addressText    String?
+  recipientName  String?
+  recipientPhone String?
+  note           String?
+  items          OrderItem[]
+  redemption     DiscountRedemption?
+  payments       Payment[]
+  events         OrderEvent[]
+  messages       OrderMessage[]
+  paidAt         DateTime?
+  createdAt      DateTime            @default(now())
+
+  @@index([userId, createdAt])
+  @@index([status, createdAt])
+  @@index([createdAt])
+  @@index([paidAt])
+}
+
+enum PaymentStatus {
+  PENDING // QR shown, waiting for the customer
+  APPROVED // paid
+  FAILED // declined or cancelled at PayWay
+  EXPIRED // QR lifetime passed without payment
+}
+
+/// One ABA PayWay KHQR attempt for an order. A new QR = a new row (tranId is
+/// single-use at PayWay).
+model Payment {
+  id           String        @id @default(uuid())
+  orderId      String
+  order        Order         @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  provider     String        @default("PAYWAY")
+  tranId       String        @unique // ours, max 20 chars, sent to PayWay
+  amountCents  Int
+  currency     String        @default("USD")
+  status       PaymentStatus @default(PENDING)
+  qrString     String?
+  deeplink     String? // abamobilebank://… opens ABA Mobile
+  checkoutUrl  String?
+  expiresAt    DateTime
+  apv          String? // approval code from PayWay
+  bankRef      String?
+  paymentType  String? // "ABA Pay", "KHQR", …
+  payerBank    String?
+  paidAt       DateTime?
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+
+  @@index([orderId])
+}
+
+model OrderItem {
+  id         String  @id @default(uuid())
+  orderId    String
+  order      Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  productId  String
+  product    Product @relation(fields: [productId], references: [id])
+  name       String
+  priceCents Int
+  qty        Int
+
+  @@index([orderId])
+  @@index([productId])
+}
+enum PromotionKind {
+  BANNER // picture + text + button (e.g. the Ming Sros banner)
+  DEAL // a product at a lower price, with "Add to cart"
+}
+
+enum PromotionAction {
+  NONE
+  OPEN_CHAT // opens the Ming Sros AI chat
+  OPEN_CATEGORY
+  OPEN_PRODUCT
+}
+
+/// Slides of the Explore carousel, managed in the admin panel.
+model Promotion {
+  id             String          @id @default(uuid())
+  kind           PromotionKind   @default(BANNER)
+  title          String
+  titleKm        String?
+  body           String?
+  bodyKm         String?
+  buttonLabel    String?
+  buttonLabelKm  String?
+  imageUrl       String?
+  action         PromotionAction @default(NONE)
+  categoryId     String?
+  category       Category?       @relation(fields: [categoryId], references: [id], onDelete: SetNull)
+  productId      String? // the deal's product, or the product OPEN_PRODUCT opens
+  product        Product?        @relation(fields: [productId], references: [id], onDelete: SetNull)
+  dealPriceCents Int?
+  startsAt       DateTime?
+  endsAt         DateTime?
+  isActive       Boolean         @default(true)
+  sortOrder      Int             @default(0)
+  createdAt      DateTime        @default(now())
+  updatedAt      DateTime        @updatedAt
+
+  @@index([isActive, sortOrder])
+}
+
+enum DiscountType {
+  PERCENT // value = percent off (1–100), optionally capped by maxDiscountCents
+  FIXED // value = US cents off
+}
+
+/// Codes customers type into the cart's voucher box, managed in the admin panel.
+model DiscountCode {
+  id               String       @id @default(uuid())
+  code             String       @unique // stored uppercase, e.g. KHMERFRESH
+  description      String?
+  descriptionKm    String?
+  type             DiscountType @default(FIXED)
+  value            Int
+  maxDiscountCents Int? // cap for PERCENT codes
+  minSubtotalCents Int          @default(0)
+  newCustomersOnly Boolean      @default(false) // only an account's first order (a welcome code)
+  oncePerCustomer  Boolean      @default(false) // each account may use it once (always true for welcome codes)
+  startsAt         DateTime?
+  endsAt           DateTime?
+  isActive         Boolean      @default(true)
+  redemptions      DiscountRedemption[]
+  createdAt        DateTime     @default(now())
+  updatedAt        DateTime     @updatedAt
+}
+
+/// One use of a code, written with the order in the same transaction.
+model DiscountRedemption {
+  id            String       @id @default(uuid())
+  codeId        String
+  code          DiscountCode @relation(fields: [codeId], references: [id], onDelete: Cascade)
+  userId        String
+  user          User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  orderId       String       @unique
+  order         Order        @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  /// "codeId:userId" for once-per-customer codes, so the database itself
+  /// refuses a second use. Cleared when the order is cancelled.
+  onceKey       String?      @unique
+  discountCents Int
+  createdAt     DateTime     @default(now())
+
+  @@index([codeId])
+  @@index([userId])
+}
+
+/// Who moved an order to which status, and when (the order's activity log).
+model OrderEvent {
+  id        String      @id @default(uuid())
+  orderId   String
+  order     Order       @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  status    OrderStatus // the status the order moved to
+  actorId   String? // null = the system (e.g. ABA PayWay)
+  actor     User?       @relation(fields: [actorId], references: [id], onDelete: SetNull)
+  actorName String? // name at the time, kept if the account is renamed or removed
+  actorRole Role?
+  source    String // APP (customer) · ADMIN (panel) · PAYWAY
+  note      String? // e.g. "Cash collected", "Restored after payment"
+  createdAt DateTime    @default(now())
+
+  @@index([orderId, createdAt])
+  @@index([actorId])
+
+  @@index([createdAt])
+}
+
+/// A note from staff to the customer about one order (a problem, a delay,
+/// the reason it was cancelled). Shows in the app's bell and as a pop-up.
+model OrderMessage {
+  id         String   @id @default(uuid())
+  orderId    String
+  order      Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  senderId   String?
+  sender     User?    @relation(fields: [senderId], references: [id], onDelete: SetNull)
+  senderName String? // name at the time it was sent
+  kind       String   @default("INFO") // INFO · PROBLEM · CANCELLED
+  body       String
+  createdAt  DateTime @default(now())
+
+  @@index([orderId, createdAt])
+}

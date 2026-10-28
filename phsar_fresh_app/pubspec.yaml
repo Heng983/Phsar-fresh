@@ -1,0 +1,86 @@
+name: phsar_fresh_app
+description: "Phsar Fresh mobile application."
+
+publish_to: "none"
+
+version: 1.0.1+2
+
+environment:
+  sdk: ^3.12.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  flutter_localizations:
+    sdk: flutter
+
+  flutter_riverpod: ^3.4.3
+  carousel_slider: ^5.1.2
+  shared_preferences: ^2.5.6
+  package_info_plus: ^10.2.2
+  image_picker: ^1.2.4
+  image: ^4.12.0
+  flutter_native_splash: ^2.4.8
+  intl: any
+  geolocator: ^14.1.1
+  geocoding: ^5.0.0
+  google_maps_flutter: ^2.19.0
+  dio: ^5.11.1
+  flutter_secure_storage: ^11.2.0
+  skeletonizer: ^3.0.0
+  qr_flutter: ^4.1.0
+  url_launcher: ^6.3.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^6.0.0
+
+flutter:
+  uses-material-design: true
+
+  generate: true
+
+  assets:
+    - assets/images/
+    - assets/images/MingSros_avatar.png
+    - assets/images/market/
+    - assets/fonts/Figtree-OFL.txt
+    - assets/fonts/KantumruyPro-OFL.txt
+
+  fonts:
+    - family: Figtree
+      fonts:
+        - asset: assets/fonts/Figtree-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/Figtree-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/Figtree-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/Figtree-Bold.ttf
+          weight: 700
+    - family: KantumruyPro
+      fonts:
+        - asset: assets/fonts/KantumruyPro-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/KantumruyPro-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/KantumruyPro-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/KantumruyPro-Bold.ttf
+          weight: 700
+
+flutter_native_splash:
+  color: "#F8F8FF"
+
+  image: assets/images/splash_logo.png
+
+  android: true
+  ios: true
+
+  android_12:
+    color: "#F8F8FF"
+    # AppLaunchTheme adds safe padding around this generated Android icon.
+    image: assets/images/splash_logo.png
