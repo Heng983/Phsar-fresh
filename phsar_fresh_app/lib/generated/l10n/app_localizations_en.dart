@@ -19,7 +19,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get chatTitle => 'Ming Sros';
 
   @override
-  String get chatSubtitle => 'Your food companion';
+  String get chatSubtitle => 'Your shopping assistant';
 
   @override
   String get chatWelcomeTitle => 'A fresh idea\nstarts here.';
@@ -133,7 +133,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get chatDeliveryReply =>
-      'Open Explore or Categories and tap the location in the header to choose your delivery address. Use the map, search, or enter an address, then save it. You can review your address and delivery choices in the checkout preview.';
+      'Open Explore or Categories and tap the location in the header to choose your delivery address. Use the map, search, or enter an address, then save it. You can review your address and delivery choices at checkout.';
 
   @override
   String get chatOrdersReply =>
@@ -150,51 +150,51 @@ class AppLocalizationsEn extends AppLocalizations {
   String get appNameKhmer => 'ផ្សារស្រស់';
 
   @override
-  String get farmFresh => '100% Farm Fresh';
+  String get farmFresh => 'Fresh & Local';
 
   @override
   String get heroDescription =>
-      'Directly harvested from Battambang, Kandal & Kampot';
+      'Fresh produce and daily essentials from across Cambodia';
 
   @override
   String get mainTitle => 'Phsar Fresh';
 
   @override
-  String get mainSubtitle => 'Freshness from\nCambodia’s Rich Soil';
+  String get mainSubtitle => 'Your fresh market,\ndelivered';
 
   @override
-  String get khmerTagline => 'ផ្សារស្រស់ • កសិផលខ្មែរស្រស់ៗពីចម្ការ';
+  String get khmerTagline => 'ផ្សារស្រស់ • ស្រស់ៗ ដឹកដល់ផ្ទះ';
 
   @override
   String get mainDescription =>
-      'Handpicked organic vegetables, Battambang fruits, and Kampot specialties delivered fresh to your door in 30 mins.';
+      'Vegetables, fruit, meat, seafood and everyday groceries, picked fresh and delivered to your door.';
 
   @override
-  String get organicTitle => '100% Organic & GAP Certified';
+  String get organicTitle => 'Quality checked, every order';
 
   @override
   String get organicDescription =>
-      'Guaranteed chemical-free greens, rigorously tested and certified by the Ministry of Agriculture.';
+      'Our team picks and checks each item before it\'s packed for you.';
 
   @override
   String get gapBadge => 'Cambodia GAP';
 
   @override
-  String get deliveryTitle => 'Farm-to-Door Delivery';
+  String get deliveryTitle => 'Delivered to your door';
 
   @override
   String get deliveryDescription =>
-      'Packed in eco-insulated woven containers to preserve garden crispness directly to your table.';
+      'Packed with care to stay fresh, then brought straight to you.';
 
   @override
   String get deliveryTime => '30 Mins';
 
   @override
-  String get fairTradeTitle => 'Direct Fair Trade with Local Farmers';
+  String get fairTradeTitle => 'Supporting local growers';
 
   @override
   String get fairTradeDescription =>
-      '100% of fair profits support smallholder farming communities across Cambodia.';
+      'We source from Cambodian farms and producers whenever we can.';
 
   @override
   String get getStarted => 'Get Started';
@@ -206,10 +206,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get signIn => 'Sign In';
 
   @override
-  String get farmFooter => 'Proudly empowering 450+ Khmer family farms';
+  String get farmFooter => 'Fresh from Cambodia, made easy';
 
   @override
-  String get authEyebrow => 'Farm-to-table gourmet';
+  String get authEyebrow => 'Fresh groceries, delivered';
 
   @override
   String get authWelcome => 'Welcome to Phsar Fresh';
@@ -222,7 +222,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get authDescription =>
-      'Discover fresh organic harvests, Kampot peppers & artisanal treasures delivered fresh to your kitchen.';
+      'Shop fresh produce, Kampot pepper and everyday groceries, delivered to your door.';
 
   @override
   String get authRegister => 'Register';
@@ -377,7 +377,7 @@ class AppLocalizationsEn extends AppLocalizations {
       'Sign in or create an account with your phone number. Your basket is saved.';
 
   @override
-  String get authOtpWelcome => 'One more step to your fresh local finds.';
+  String get authOtpWelcome => 'One more step and you\'re ready to shop.';
 
   @override
   String get authOtpInstructions =>
@@ -513,7 +513,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get marketAllItems => 'All Items';
 
   @override
-  String get marketFlashDeal => 'Flash harvest deal';
+  String get marketFlashDeal => 'Today\'s deal';
 
   @override
   String get marketDealTitle => 'Special 20% off Battambang Citrus';
@@ -623,7 +623,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get marketEmptyCartDescription =>
-      'Explore fresh local collections to fill your basket.';
+      'Explore fresh products to fill your basket.';
 
   @override
   String get marketYourBasket => 'Your Basket';
@@ -642,7 +642,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get marketGuestDescription =>
-      'Browse fresh collections as a guest. Sign in to manage your account.';
+      'Browse as a guest. Sign in to order and manage your account.';
 
   @override
   String get marketLanguage => 'Language';
@@ -657,11 +657,11 @@ class AppLocalizationsEn extends AppLocalizations {
   String get marketSaveLocation => 'Save location';
 
   @override
-  String get exploreTodayHarvest => 'Today\'s harvest deals';
+  String get exploreTodayHarvest => 'Today\'s deals';
 
   @override
   String get exploreWelcome =>
-      'Fresh finds from Cambodian farms, ready for your kitchen.';
+      'Fresh picks and daily essentials, delivered to your door.';
 
   @override
   String get exploreShopCategories => 'Shop by category';
@@ -670,8 +670,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get exploreFreshArrivals => 'Fresh arrivals';
 
   @override
-  String get exploreFreshSubtitle =>
-      'Discover seasonal produce and fresh local picks.';
+  String get exploreFreshSubtitle => 'New and seasonal items in the market.';
 
   @override
   String get explorePopular => 'Popular this week';
@@ -681,7 +680,7 @@ class AppLocalizationsEn extends AppLocalizations {
       'Local favorites for your everyday basket.';
 
   @override
-  String get exploreMingSrosTitle => 'Meet Ming Sros, your AI kitchen helper';
+  String get exploreMingSrosTitle => 'Meet Ming Sros, your AI shopping helper';
 
   @override
   String get exploreMingSrosBody =>
@@ -787,10 +786,11 @@ class AppLocalizationsEn extends AppLocalizations {
       'Our local catalog highlights Cambodian growers and cooperatives, with fresh harvests selected for everyday cooking.';
 
   @override
-  String get cartEyebrow => 'Fresh from local farms';
+  String get cartEyebrow => 'Fresh picks, ready to order';
 
   @override
-  String get cartSubtitle => 'A little local goodness, ready for your kitchen.';
+  String get cartSubtitle =>
+      'Review your items, then check out when you\'re ready.';
 
   @override
   String get cartItemRemoved => 'Removed from basket';
@@ -834,7 +834,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get cartPackagingDescription =>
-      'Banana leaf & recycled kraft packaging included.';
+      'Every order is packed with care to keep it fresh.';
 
   @override
   String get cartOrderSummary => 'Order Summary';
@@ -849,7 +849,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get cartTotalPayable => 'Total payable';
 
   @override
-  String get cartFarmerSupport => 'Every basket supports Cambodian farmers.';
+  String get cartFarmerSupport =>
+      'Every order supports local Cambodian growers and shops.';
 
   @override
   String get cartCheckout => 'Proceed to Checkout';
@@ -883,8 +884,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get checkoutAddRecipient => 'Add recipient name and phone number';
 
   @override
-  String get checkoutLocalFresh =>
-      'Thoughtfully packed, fresh from local farms';
+  String get checkoutLocalFresh => 'Packed with care, delivered fresh';
 
   @override
   String get checkoutEditAddress => 'Delivery details';
@@ -1021,7 +1021,7 @@ class AppLocalizationsEn extends AppLocalizations {
       'Order placement and payments are not available yet. Your basket and checkout choices are saved for this session.';
 
   @override
-  String get ordersEyebrow => 'Your farm-fresh journey';
+  String get ordersEyebrow => 'Your fresh deliveries';
 
   @override
   String get ordersTitle => 'My orders';
@@ -1240,7 +1240,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get profilePaymentHint =>
-      'Choose your default for this visit. Payment is completed at checkout when ordering is available.';
+      'Choose your usual payment method. You can change it at checkout.';
 
   @override
   String get profilePreferences => 'Preferences & language';
@@ -1258,14 +1258,14 @@ class AppLocalizationsEn extends AppLocalizations {
   String get profileHelpHint => 'Answers about delivery, products & payments';
 
   @override
-  String get profileSourcing => 'From farm to your table';
+  String get profileSourcing => 'Where your food comes from';
 
   @override
   String get profileSourcingHint => 'Get to know your fresh food';
 
   @override
   String get profileSourcingBody =>
-      'Explore each product to see its farm origin, pack sizes and product information. Supplier and certification details should be checked on the product listing when available. The current catalog includes demonstration content.';
+      'Open any product to see where it comes from, its pack size and product details.';
 
   @override
   String get profilePrivacy => 'Your account & privacy';
@@ -1718,7 +1718,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get khqrLeaveBody =>
-      'Your order is saved, but we only start preparing it once it\'s paid.';
+      'If you leave now, this order is cancelled and your items go back to your basket.';
 
   @override
   String get khqrStay => 'Stay and pay';

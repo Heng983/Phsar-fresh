@@ -119,7 +119,7 @@ abstract class AppLocalizations {
   /// No description provided for @chatSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Your food companion'**
+  /// **'Your shopping assistant'**
   String get chatSubtitle;
 
   /// No description provided for @chatWelcomeTitle.
@@ -311,7 +311,7 @@ abstract class AppLocalizations {
   /// No description provided for @chatDeliveryReply.
   ///
   /// In en, this message translates to:
-  /// **'Open Explore or Categories and tap the location in the header to choose your delivery address. Use the map, search, or enter an address, then save it. You can review your address and delivery choices in the checkout preview.'**
+  /// **'Open Explore or Categories and tap the location in the header to choose your delivery address. Use the map, search, or enter an address, then save it. You can review your address and delivery choices at checkout.'**
   String get chatDeliveryReply;
 
   /// No description provided for @chatOrdersReply.
@@ -341,13 +341,13 @@ abstract class AppLocalizations {
   /// No description provided for @farmFresh.
   ///
   /// In en, this message translates to:
-  /// **'100% Farm Fresh'**
+  /// **'Fresh & Local'**
   String get farmFresh;
 
   /// No description provided for @heroDescription.
   ///
   /// In en, this message translates to:
-  /// **'Directly harvested from Battambang, Kandal & Kampot'**
+  /// **'Fresh produce and daily essentials from across Cambodia'**
   String get heroDescription;
 
   /// No description provided for @mainTitle.
@@ -359,31 +359,31 @@ abstract class AppLocalizations {
   /// No description provided for @mainSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Freshness from\nCambodia’s Rich Soil'**
+  /// **'Your fresh market,\ndelivered'**
   String get mainSubtitle;
 
   /// No description provided for @khmerTagline.
   ///
   /// In en, this message translates to:
-  /// **'ផ្សារស្រស់ • កសិផលខ្មែរស្រស់ៗពីចម្ការ'**
+  /// **'ផ្សារស្រស់ • ស្រស់ៗ ដឹកដល់ផ្ទះ'**
   String get khmerTagline;
 
   /// No description provided for @mainDescription.
   ///
   /// In en, this message translates to:
-  /// **'Handpicked organic vegetables, Battambang fruits, and Kampot specialties delivered fresh to your door in 30 mins.'**
+  /// **'Vegetables, fruit, meat, seafood and everyday groceries, picked fresh and delivered to your door.'**
   String get mainDescription;
 
   /// No description provided for @organicTitle.
   ///
   /// In en, this message translates to:
-  /// **'100% Organic & GAP Certified'**
+  /// **'Quality checked, every order'**
   String get organicTitle;
 
   /// No description provided for @organicDescription.
   ///
   /// In en, this message translates to:
-  /// **'Guaranteed chemical-free greens, rigorously tested and certified by the Ministry of Agriculture.'**
+  /// **'Our team picks and checks each item before it\'s packed for you.'**
   String get organicDescription;
 
   /// No description provided for @gapBadge.
@@ -395,13 +395,13 @@ abstract class AppLocalizations {
   /// No description provided for @deliveryTitle.
   ///
   /// In en, this message translates to:
-  /// **'Farm-to-Door Delivery'**
+  /// **'Delivered to your door'**
   String get deliveryTitle;
 
   /// No description provided for @deliveryDescription.
   ///
   /// In en, this message translates to:
-  /// **'Packed in eco-insulated woven containers to preserve garden crispness directly to your table.'**
+  /// **'Packed with care to stay fresh, then brought straight to you.'**
   String get deliveryDescription;
 
   /// No description provided for @deliveryTime.
@@ -413,13 +413,13 @@ abstract class AppLocalizations {
   /// No description provided for @fairTradeTitle.
   ///
   /// In en, this message translates to:
-  /// **'Direct Fair Trade with Local Farmers'**
+  /// **'Supporting local growers'**
   String get fairTradeTitle;
 
   /// No description provided for @fairTradeDescription.
   ///
   /// In en, this message translates to:
-  /// **'100% of fair profits support smallholder farming communities across Cambodia.'**
+  /// **'We source from Cambodian farms and producers whenever we can.'**
   String get fairTradeDescription;
 
   /// No description provided for @getStarted.
@@ -443,13 +443,13 @@ abstract class AppLocalizations {
   /// No description provided for @farmFooter.
   ///
   /// In en, this message translates to:
-  /// **'Proudly empowering 450+ Khmer family farms'**
+  /// **'Fresh from Cambodia, made easy'**
   String get farmFooter;
 
   /// No description provided for @authEyebrow.
   ///
   /// In en, this message translates to:
-  /// **'Farm-to-table gourmet'**
+  /// **'Fresh groceries, delivered'**
   String get authEyebrow;
 
   /// No description provided for @authWelcome.
@@ -473,7 +473,7 @@ abstract class AppLocalizations {
   /// No description provided for @authDescription.
   ///
   /// In en, this message translates to:
-  /// **'Discover fresh organic harvests, Kampot peppers & artisanal treasures delivered fresh to your kitchen.'**
+  /// **'Shop fresh produce, Kampot pepper and everyday groceries, delivered to your door.'**
   String get authDescription;
 
   /// No description provided for @authRegister.
@@ -761,7 +761,7 @@ abstract class AppLocalizations {
   /// No description provided for @authOtpWelcome.
   ///
   /// In en, this message translates to:
-  /// **'One more step to your fresh local finds.'**
+  /// **'One more step and you\'re ready to shop.'**
   String get authOtpWelcome;
 
   /// No description provided for @authOtpInstructions.
@@ -983,7 +983,7 @@ abstract class AppLocalizations {
   /// No description provided for @marketFlashDeal.
   ///
   /// In en, this message translates to:
-  /// **'Flash harvest deal'**
+  /// **'Today\'s deal'**
   String get marketFlashDeal;
 
   /// No description provided for @marketDealTitle.
@@ -1181,7 +1181,7 @@ abstract class AppLocalizations {
   /// No description provided for @marketEmptyCartDescription.
   ///
   /// In en, this message translates to:
-  /// **'Explore fresh local collections to fill your basket.'**
+  /// **'Explore fresh products to fill your basket.'**
   String get marketEmptyCartDescription;
 
   /// No description provided for @marketYourBasket.
@@ -1217,7 +1217,7 @@ abstract class AppLocalizations {
   /// No description provided for @marketGuestDescription.
   ///
   /// In en, this message translates to:
-  /// **'Browse fresh collections as a guest. Sign in to manage your account.'**
+  /// **'Browse as a guest. Sign in to order and manage your account.'**
   String get marketGuestDescription;
 
   /// No description provided for @marketLanguage.
@@ -1247,13 +1247,13 @@ abstract class AppLocalizations {
   /// No description provided for @exploreTodayHarvest.
   ///
   /// In en, this message translates to:
-  /// **'Today\'s harvest deals'**
+  /// **'Today\'s deals'**
   String get exploreTodayHarvest;
 
   /// No description provided for @exploreWelcome.
   ///
   /// In en, this message translates to:
-  /// **'Fresh finds from Cambodian farms, ready for your kitchen.'**
+  /// **'Fresh picks and daily essentials, delivered to your door.'**
   String get exploreWelcome;
 
   /// No description provided for @exploreShopCategories.
@@ -1271,7 +1271,7 @@ abstract class AppLocalizations {
   /// No description provided for @exploreFreshSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Discover seasonal produce and fresh local picks.'**
+  /// **'New and seasonal items in the market.'**
   String get exploreFreshSubtitle;
 
   /// No description provided for @explorePopular.
@@ -1289,7 +1289,7 @@ abstract class AppLocalizations {
   /// No description provided for @exploreMingSrosTitle.
   ///
   /// In en, this message translates to:
-  /// **'Meet Ming Sros, your AI kitchen helper'**
+  /// **'Meet Ming Sros, your AI shopping helper'**
   String get exploreMingSrosTitle;
 
   /// No description provided for @exploreMingSrosBody.
@@ -1493,13 +1493,13 @@ abstract class AppLocalizations {
   /// No description provided for @cartEyebrow.
   ///
   /// In en, this message translates to:
-  /// **'Fresh from local farms'**
+  /// **'Fresh picks, ready to order'**
   String get cartEyebrow;
 
   /// No description provided for @cartSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'A little local goodness, ready for your kitchen.'**
+  /// **'Review your items, then check out when you\'re ready.'**
   String get cartSubtitle;
 
   /// No description provided for @cartItemRemoved.
@@ -1571,7 +1571,7 @@ abstract class AppLocalizations {
   /// No description provided for @cartPackagingDescription.
   ///
   /// In en, this message translates to:
-  /// **'Banana leaf & recycled kraft packaging included.'**
+  /// **'Every order is packed with care to keep it fresh.'**
   String get cartPackagingDescription;
 
   /// No description provided for @cartOrderSummary.
@@ -1601,7 +1601,7 @@ abstract class AppLocalizations {
   /// No description provided for @cartFarmerSupport.
   ///
   /// In en, this message translates to:
-  /// **'Every basket supports Cambodian farmers.'**
+  /// **'Every order supports local Cambodian growers and shops.'**
   String get cartFarmerSupport;
 
   /// No description provided for @cartCheckout.
@@ -1667,7 +1667,7 @@ abstract class AppLocalizations {
   /// No description provided for @checkoutLocalFresh.
   ///
   /// In en, this message translates to:
-  /// **'Thoughtfully packed, fresh from local farms'**
+  /// **'Packed with care, delivered fresh'**
   String get checkoutLocalFresh;
 
   /// No description provided for @checkoutEditAddress.
@@ -1907,7 +1907,7 @@ abstract class AppLocalizations {
   /// No description provided for @ordersEyebrow.
   ///
   /// In en, this message translates to:
-  /// **'Your farm-fresh journey'**
+  /// **'Your fresh deliveries'**
   String get ordersEyebrow;
 
   /// No description provided for @ordersTitle.
@@ -2285,7 +2285,7 @@ abstract class AppLocalizations {
   /// No description provided for @profilePaymentHint.
   ///
   /// In en, this message translates to:
-  /// **'Choose your default for this visit. Payment is completed at checkout when ordering is available.'**
+  /// **'Choose your usual payment method. You can change it at checkout.'**
   String get profilePaymentHint;
 
   /// No description provided for @profilePreferences.
@@ -2321,7 +2321,7 @@ abstract class AppLocalizations {
   /// No description provided for @profileSourcing.
   ///
   /// In en, this message translates to:
-  /// **'From farm to your table'**
+  /// **'Where your food comes from'**
   String get profileSourcing;
 
   /// No description provided for @profileSourcingHint.
@@ -2333,7 +2333,7 @@ abstract class AppLocalizations {
   /// No description provided for @profileSourcingBody.
   ///
   /// In en, this message translates to:
-  /// **'Explore each product to see its farm origin, pack sizes and product information. Supplier and certification details should be checked on the product listing when available. The current catalog includes demonstration content.'**
+  /// **'Open any product to see where it comes from, its pack size and product details.'**
   String get profileSourcingBody;
 
   /// No description provided for @profilePrivacy.
@@ -3113,7 +3113,7 @@ abstract class AppLocalizations {
   /// No description provided for @khqrLeaveBody.
   ///
   /// In en, this message translates to:
-  /// **'Your order is saved, but we only start preparing it once it\'s paid.'**
+  /// **'If you leave now, this order is cancelled and your items go back to your basket.'**
   String get khqrLeaveBody;
 
   /// No description provided for @khqrStay.

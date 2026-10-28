@@ -250,7 +250,7 @@ void main() {
           .text,
       isEmpty,
     );
-    expect(find.text("Today's harvest deals"), findsOneWidget);
+    expect(find.text("Today's deals"), findsOneWidget);
     await tester.enterText(find.byKey(const Key('market-search')), 'rice');
     await tester.pumpAndSettle();
     expect(find.byKey(const Key('explore-results-rice')), findsOneWidget);

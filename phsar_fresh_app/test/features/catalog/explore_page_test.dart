@@ -110,7 +110,7 @@ void main() {
       expect(find.byType(ExplorePage), findsOneWidget);
       await tester.drag(find.byType(CustomScrollView), const Offset(0, 1500));
       await tester.pumpAndSettle();
-      expect(find.text("Today's harvest deals"), findsOneWidget);
+      expect(find.text("Today's deals"), findsOneWidget);
       expect(tester.takeException(), isNull);
       await tester.pumpWidget(const SizedBox());
     },
@@ -174,7 +174,7 @@ void main() {
     await tester.ensureVisible(find.text('Reset filters').last);
     await tester.tap(find.text('Reset filters').last);
     await tester.pumpAndSettle();
-    expect(find.text("Today's harvest deals"), findsOneWidget);
+    expect(find.text("Today's deals"), findsOneWidget);
     expect(tester.takeException(), isNull);
     await tester.pumpWidget(const SizedBox());
   });

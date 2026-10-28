@@ -19,7 +19,7 @@ class AppLocalizationsKm extends AppLocalizations {
   String get chatTitle => 'មីងស្រស់';
 
   @override
-  String get chatSubtitle => 'ដៃគូទិញកសិផលរបស់អ្នក';
+  String get chatSubtitle => 'ជំនួយការទិញទំនិញរបស់អ្នក';
 
   @override
   String get chatWelcomeTitle => 'គំនិតថ្មីៗ\nចាប់ផ្តើមនៅទីនេះ។';
@@ -132,7 +132,7 @@ class AppLocalizationsKm extends AppLocalizations {
 
   @override
   String get chatDeliveryReply =>
-      'ចូលផ្នែករុករក ឬប្រភេទ រួចចុចទីតាំងនៅផ្នែកខាងលើ ដើម្បីជ្រើសរើសអាសយដ្ឋានដឹកជញ្ជូន។ ប្រើផែនទី ស្វែងរក ឬបញ្ចូលអាសយដ្ឋាន រួចរក្សាទុក។ អ្នកអាចពិនិត្យអាសយដ្ឋាន និងជម្រើសដឹកជញ្ជូនក្នុងការសាកល្បងទូទាត់។';
+      'ចូលផ្នែករុករក ឬប្រភេទ រួចចុចទីតាំងនៅផ្នែកខាងលើ ដើម្បីជ្រើសរើសអាសយដ្ឋានដឹកជញ្ជូន។ ប្រើផែនទី ស្វែងរក ឬបញ្ចូលអាសយដ្ឋាន រួចរក្សាទុក។ អ្នកអាចពិនិត្យអាសយដ្ឋាន និងជម្រើសដឹកជញ្ជូនក្នុងការទូទាត់។';
 
   @override
   String get chatOrdersReply =>
@@ -149,50 +149,51 @@ class AppLocalizationsKm extends AppLocalizations {
   String get appNameKhmer => 'Phsar Fresh';
 
   @override
-  String get farmFresh => 'កសិផលស្រស់ 100%';
+  String get farmFresh => 'ស្រស់ និងក្នុងស្រុក';
 
   @override
-  String get heroDescription => 'ប្រមូលផលដោយផ្ទាល់ពីបាត់ដំបង កណ្ដាល និងកំពត';
+  String get heroDescription =>
+      'កសិផលស្រស់ និងទំនិញប្រចាំថ្ងៃ មកពីទូទាំងកម្ពុជា';
 
   @override
   String get mainTitle => 'ផ្សារស្រស់';
 
   @override
-  String get mainSubtitle => 'ភាពស្រស់ពីដីដ៏សម្បូរបែប\nរបស់កម្ពុជា';
+  String get mainSubtitle => 'ផ្សារស្រស់របស់អ្នក\nដឹកដល់ផ្ទះ';
 
   @override
-  String get khmerTagline => 'កសិផលខ្មែរស្រស់ៗពីចម្ការ';
+  String get khmerTagline => 'ផ្សារស្រស់ • ស្រស់ៗ ដឹកដល់ផ្ទះ';
 
   @override
   String get mainDescription =>
-      'បន្លែសរីរាង្គ ផ្លែឈើពីបាត់ដំបង និងផលិតផលពិសេសពីកំពត ដឹកជញ្ជូនស្រស់ដល់ផ្ទះអ្នកក្នុងរយៈពេល 30 នាទី។';
+      'បន្លែ ផ្លែឈើ សាច់ គ្រឿងសមុទ្រ និងទំនិញប្រចាំថ្ងៃ ជ្រើសរើសស្រស់ៗ ហើយដឹកដល់មាត់ទ្វារផ្ទះអ្នក។';
 
   @override
-  String get organicTitle => 'សរីរាង្គ 100% និងមានវិញ្ញាបនបត្រ GAP';
+  String get organicTitle => 'ពិនិត្យគុណភាពគ្រប់ការបញ្ជាទិញ';
 
   @override
   String get organicDescription =>
-      'បន្លែគ្មានសារធាតុគីមី ដែលត្រូវបានត្រួតពិនិត្យ និងបញ្ជាក់គុណភាពដោយក្រសួងកសិកម្ម។';
+      'ក្រុមការងាររបស់យើងជ្រើសរើស និងពិនិត្យទំនិញនីមួយៗ មុនវេចខ្ចប់ជូនអ្នក។';
 
   @override
   String get gapBadge => 'កម្ពុជា GAP';
 
   @override
-  String get deliveryTitle => 'ដឹកជញ្ជូនពីកសិដ្ឋានដល់ផ្ទះ';
+  String get deliveryTitle => 'ដឹកជញ្ជូនដល់ផ្ទះ';
 
   @override
   String get deliveryDescription =>
-      'វេចខ្ចប់យ៉ាងល្អ ដើម្បីរក្សាភាពស្រស់រហូតដល់ផ្ទះអ្នក។';
+      'វេចខ្ចប់យ៉ាងយកចិត្តទុកដាក់ ដើម្បីរក្សាភាពស្រស់ ហើយដឹកជូនអ្នកផ្ទាល់។';
 
   @override
   String get deliveryTime => '30 នាទី';
 
   @override
-  String get fairTradeTitle => 'ពាណិជ្ជកម្មត្រឹមត្រូវជាមួយកសិករខ្មែរ';
+  String get fairTradeTitle => 'គាំទ្រកសិករក្នុងស្រុក';
 
   @override
   String get fairTradeDescription =>
-      'ប្រាក់ចំណេញត្រូវបានគាំទ្រដោយផ្ទាល់ទៅកាន់សហគមន៍កសិករខ្នាតតូចនៅទូទាំងកម្ពុជា។';
+      'យើងទិញពីកសិដ្ឋាន និងអ្នកផលិតកម្ពុជា នៅពេលណាដែលអាចធ្វើបាន។';
 
   @override
   String get getStarted => 'ចាប់ផ្តើម';
@@ -204,10 +205,10 @@ class AppLocalizationsKm extends AppLocalizations {
   String get signIn => 'ចូលគណនី';
 
   @override
-  String get farmFooter => 'គាំទ្រកសិដ្ឋានគ្រួសារខ្មែរជាង 450+';
+  String get farmFooter => 'ភាពស្រស់ពីកម្ពុជា ទិញបានយ៉ាងងាយស្រួល';
 
   @override
-  String get authEyebrow => 'កសិផលឆ្ងាញ់ពីកសិដ្ឋានដល់តុអាហារ';
+  String get authEyebrow => 'គ្រឿងទេសស្រស់ ដឹកដល់ផ្ទះ';
 
   @override
   String get authWelcome => 'សូមស្វាគមន៍មកកាន់ផ្សារស្រស់';
@@ -220,7 +221,7 @@ class AppLocalizationsKm extends AppLocalizations {
 
   @override
   String get authDescription =>
-      'ស្វែងរកកសិផលសរីរាង្គស្រស់ៗ ម្រេចកំពត និងផលិតផលពិសេស ដឹកជញ្ជូនស្រស់ដល់ផ្ទះអ្នក។';
+      'ទិញកសិផលស្រស់ ម្រេចកំពត និងទំនិញប្រចាំថ្ងៃ ដឹកដល់មាត់ទ្វារផ្ទះអ្នក។';
 
   @override
   String get authRegister => 'ចុះឈ្មោះ';
@@ -374,8 +375,7 @@ class AppLocalizationsKm extends AppLocalizations {
       'ចូលគណនី ឬបង្កើតគណនីដោយប្រើលេខទូរស័ព្ទរបស់អ្នក។ កន្ត្រករបស់អ្នកត្រូវបានរក្សាទុក។';
 
   @override
-  String get authOtpWelcome =>
-      'នៅសល់តែមួយជំហានទៀត ដើម្បីរីករាយជាមួយកសិផលក្នុងស្រុកស្រស់ៗ។';
+  String get authOtpWelcome => 'នៅសល់តែមួយជំហានទៀត អ្នកអាចចាប់ផ្តើមទិញបាន។';
 
   @override
   String get authOtpInstructions =>
@@ -511,7 +511,7 @@ class AppLocalizationsKm extends AppLocalizations {
   String get marketAllItems => 'ទាំងអស់';
 
   @override
-  String get marketFlashDeal => 'ប្រូម៉ូសិនកសិផលថ្មី';
+  String get marketFlashDeal => 'ការផ្តល់ជូនថ្ងៃនេះ';
 
   @override
   String get marketDealTitle => 'បញ្ចុះតម្លៃ 20% លើក្រូចបាត់ដំបង';
@@ -616,7 +616,7 @@ class AppLocalizationsKm extends AppLocalizations {
 
   @override
   String get marketEmptyCartDescription =>
-      'ស្វែងរកកសិផលក្នុងស្រុកស្រស់ៗ ដើម្បីដាក់ក្នុងកន្ត្រក។';
+      'ស្វែងរកផលិតផលស្រស់ៗ ដើម្បីដាក់ក្នុងកន្ត្រក។';
 
   @override
   String get marketYourBasket => 'កន្ត្រករបស់អ្នក';
@@ -635,7 +635,7 @@ class AppLocalizationsKm extends AppLocalizations {
 
   @override
   String get marketGuestDescription =>
-      'ទស្សនាកសិផលស្រស់ៗជាភ្ញៀវ។ ចូលគណនីដើម្បីគ្រប់គ្រងគណនីរបស់អ្នក។';
+      'ទស្សនាជាភ្ញៀវ។ ចូលគណនីដើម្បីបញ្ជាទិញ និងគ្រប់គ្រងគណនី។';
 
   @override
   String get marketLanguage => 'ភាសា';
@@ -650,11 +650,10 @@ class AppLocalizationsKm extends AppLocalizations {
   String get marketSaveLocation => 'រក្សាទុកទីតាំង';
 
   @override
-  String get exploreTodayHarvest => 'ប្រូម៉ូសិនកសិផលថ្ងៃនេះ';
+  String get exploreTodayHarvest => 'ការផ្តល់ជូនពិសេសថ្ងៃនេះ';
 
   @override
-  String get exploreWelcome =>
-      'កសិផលស្រស់ៗពីកសិដ្ឋានកម្ពុជា សម្រាប់ផ្ទះបាយរបស់អ្នក។';
+  String get exploreWelcome => 'ផលិតផលស្រស់ និងទំនិញប្រចាំថ្ងៃ ដឹកដល់ផ្ទះអ្នក។';
 
   @override
   String get exploreShopCategories => 'ទិញតាមប្រភេទ';
@@ -663,8 +662,7 @@ class AppLocalizationsKm extends AppLocalizations {
   String get exploreFreshArrivals => 'កសិផលទើបមកដល់';
 
   @override
-  String get exploreFreshSubtitle =>
-      'ស្វែងរកកសិផលតាមរដូវ និងផលិតផលក្នុងស្រុកស្រស់ៗ។';
+  String get exploreFreshSubtitle => 'ទំនិញថ្មី និងទំនិញតាមរដូវនៅក្នុងផ្សារ។';
 
   @override
   String get explorePopular => 'ពេញនិយមសប្តាហ៍នេះ';
@@ -674,7 +672,8 @@ class AppLocalizationsKm extends AppLocalizations {
       'ផលិតផលក្នុងស្រុកសម្រាប់តម្រូវការប្រចាំថ្ងៃ។';
 
   @override
-  String get exploreMingSrosTitle => 'ស្គាល់មីងស្រស់ ជំនួយការ AI ក្នុងផ្ទះបាយ';
+  String get exploreMingSrosTitle =>
+      'ស្គាល់មីងស្រស់ ជំនួយការ AI សម្រាប់ទិញទំនិញ';
 
   @override
   String get exploreMingSrosBody =>
@@ -780,10 +779,10 @@ class AppLocalizationsKm extends AppLocalizations {
       'កាតាឡុកក្នុងស្រុករបស់យើងបង្ហាញកសិករ និងសហករណ៍កម្ពុជា ជាមួយកសិផលស្រស់សម្រាប់ចម្អិនអាហារប្រចាំថ្ងៃ។';
 
   @override
-  String get cartEyebrow => 'កសិផលស្រស់ពីកសិករក្នុងស្រុក';
+  String get cartEyebrow => 'ផលិតផលស្រស់ៗ រួចរាល់សម្រាប់បញ្ជាទិញ';
 
   @override
-  String get cartSubtitle => 'កសិផលក្នុងស្រុកល្អៗ សម្រាប់ផ្ទះបាយរបស់អ្នក។';
+  String get cartSubtitle => 'ពិនិត្យទំនិញរបស់អ្នក ហើយទូទាត់នៅពេលរួចរាល់។';
 
   @override
   String get cartItemRemoved => 'បានដកចេញពីកន្ត្រក';
@@ -827,7 +826,7 @@ class AppLocalizationsKm extends AppLocalizations {
 
   @override
   String get cartPackagingDescription =>
-      'រួមបញ្ចូលស្លឹកចេក និងប្រអប់ក្រដាសកែច្នៃ។';
+      'ការបញ្ជាទិញនីមួយៗត្រូវបានវេចខ្ចប់យ៉ាងយកចិត្តទុកដាក់ ដើម្បីរក្សាភាពស្រស់។';
 
   @override
   String get cartOrderSummary => 'សង្ខេបការបញ្ជាទិញ';
@@ -842,7 +841,8 @@ class AppLocalizationsKm extends AppLocalizations {
   String get cartTotalPayable => 'សរុបត្រូវបង់';
 
   @override
-  String get cartFarmerSupport => 'កន្ត្រកនីមួយៗជួយគាំទ្រកសិករកម្ពុជា។';
+  String get cartFarmerSupport =>
+      'ការបញ្ជាទិញនីមួយៗ ជួយគាំទ្រកសិករ និងអាជីវករក្នុងស្រុក។';
 
   @override
   String get cartCheckout => 'បន្តទៅការទូទាត់';
@@ -876,8 +876,7 @@ class AppLocalizationsKm extends AppLocalizations {
   String get checkoutAddRecipient => 'បន្ថែមឈ្មោះ និងលេខទូរសព្ទអ្នកទទួល';
 
   @override
-  String get checkoutLocalFresh =>
-      'វេចខ្ចប់យ៉ាងយកចិត្តទុកដាក់ ស្រស់ពីកសិដ្ឋានក្នុងស្រុក';
+  String get checkoutLocalFresh => 'វេចខ្ចប់យ៉ាងយកចិត្តទុកដាក់ ដឹកជញ្ជូនស្រស់ៗ';
 
   @override
   String get checkoutEditAddress => 'ព័ត៌មានដឹកជញ្ជូន';
@@ -1012,7 +1011,7 @@ class AppLocalizationsKm extends AppLocalizations {
       'ការបញ្ជាទិញ និងការទូទាត់មិនទាន់អាចប្រើបានទេ។ កន្ត្រក និងជម្រើសទូទាត់របស់អ្នកត្រូវបានរក្សាទុកសម្រាប់ការប្រើប្រាស់លើកនេះ។';
 
   @override
-  String get ordersEyebrow => 'ដំណើរកសិផលស្រស់របស់អ្នក';
+  String get ordersEyebrow => 'ការដឹកជញ្ជូនស្រស់ៗរបស់អ្នក';
 
   @override
   String get ordersTitle => 'ការបញ្ជាទិញរបស់ខ្ញុំ';
@@ -1231,7 +1230,7 @@ class AppLocalizationsKm extends AppLocalizations {
 
   @override
   String get profilePaymentHint =>
-      'ជ្រើសរើសវិធីទូទាត់សម្រាប់ការប្រើប្រាស់លើកនេះ។ ការទូទាត់នឹងធ្វើនៅពេលបញ្ជាទិញអាចប្រើបាន។';
+      'ជ្រើសរើសវិធីបង់ប្រាក់ដែលអ្នកប្រើជាប្រចាំ។ អ្នកអាចប្តូរវានៅពេលទូទាត់។';
 
   @override
   String get profilePreferences => 'ការកំណត់ និងភាសា';
@@ -1249,14 +1248,14 @@ class AppLocalizationsKm extends AppLocalizations {
   String get profileHelpHint => 'ចម្លើយអំពីការដឹកជញ្ជូន ផលិតផល និងការទូទាត់';
 
   @override
-  String get profileSourcing => 'ពីកសិដ្ឋានដល់តុអាហាររបស់អ្នក';
+  String get profileSourcing => 'អាហាររបស់អ្នកមកពីណា';
 
   @override
   String get profileSourcingHint => 'ស្វែងយល់អំពីអាហារស្រស់របស់អ្នក';
 
   @override
   String get profileSourcingBody =>
-      'បើកផលិតផលនីមួយៗដើម្បីមើលប្រភពកសិដ្ឋាន ទំហំកញ្ចប់ និងព័ត៌មានផលិតផល។ សូមពិនិត្យព័ត៌មានអ្នកផ្គត់ផ្គង់ និងវិញ្ញាបនបត្រនៅលើផលិតផល ប្រសិនបើមាន។ បញ្ជីផលិតផលបច្ចុប្បន្នមានមាតិកាសម្រាប់បង្ហាញសាកល្បង។';
+      'បើកផលិតផលណាមួយ ដើម្បីមើលប្រភព ទំហំកញ្ចប់ និងព័ត៌មានលម្អិត។';
 
   @override
   String get profilePrivacy => 'គណនី និងឯកជនភាពរបស់អ្នក';
@@ -1710,7 +1709,7 @@ class AppLocalizationsKm extends AppLocalizations {
 
   @override
   String get khqrLeaveBody =>
-      'ការបញ្ជាទិញរបស់អ្នកត្រូវបានរក្សាទុក ប៉ុន្តែយើងចាប់ផ្តើមរៀបចំតែពេលបានបង់ប្រាក់ប៉ុណ្ណោះ។';
+      'បើអ្នកចាកចេញឥឡូវ ការបញ្ជាទិញនេះនឹងត្រូវបោះបង់ ហើយទំនិញនឹងត្រឡប់ទៅកន្ត្រកវិញ។';
 
   @override
   String get khqrStay => 'បន្តបង់ប្រាក់';
