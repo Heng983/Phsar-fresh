@@ -21,8 +21,6 @@ class OnboardingPage extends StatelessWidget {
         description: context.l10n.organicDescription,
         iconBackgroundColor: AppColors.lightGreen,
         iconColor: AppColors.primary,
-        badge: context.l10n.gapBadge,
-        badgeColor: const Color(0xFF1D8B47),
       ),
       FeatureItem(
         icon: Icons.delivery_dining,

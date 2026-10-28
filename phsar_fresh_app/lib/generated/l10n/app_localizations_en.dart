@@ -177,9 +177,6 @@ class AppLocalizationsEn extends AppLocalizations {
       'Our team picks and checks each item before it\'s packed for you.';
 
   @override
-  String get gapBadge => 'Cambodia GAP';
-
-  @override
   String get deliveryTitle => 'Delivered to your door';
 
   @override
@@ -1622,6 +1619,12 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get checkoutNeedLocation =>
       'Pin your delivery location on the map so the driver can find you.';
+
+  @override
+  String get orderSuccessPaidAba => 'ABA KHQR · Paid';
+
+  @override
+  String get orderSuccessTotalPaid => 'Total paid';
 
   @override
   String get orderSuccessTitle => 'Order placed!';

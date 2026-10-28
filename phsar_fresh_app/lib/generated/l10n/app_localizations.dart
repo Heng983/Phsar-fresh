@@ -386,12 +386,6 @@ abstract class AppLocalizations {
   /// **'Our team picks and checks each item before it\'s packed for you.'**
   String get organicDescription;
 
-  /// No description provided for @gapBadge.
-  ///
-  /// In en, this message translates to:
-  /// **'Cambodia GAP'**
-  String get gapBadge;
-
   /// No description provided for @deliveryTitle.
   ///
   /// In en, this message translates to:
@@ -2953,6 +2947,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Pin your delivery location on the map so the driver can find you.'**
   String get checkoutNeedLocation;
+
+  /// No description provided for @orderSuccessPaidAba.
+  ///
+  /// In en, this message translates to:
+  /// **'ABA KHQR · Paid'**
+  String get orderSuccessPaidAba;
+
+  /// No description provided for @orderSuccessTotalPaid.
+  ///
+  /// In en, this message translates to:
+  /// **'Total paid'**
+  String get orderSuccessTotalPaid;
 
   /// No description provided for @orderSuccessTitle.
   ///

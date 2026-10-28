@@ -176,9 +176,6 @@ class AppLocalizationsKm extends AppLocalizations {
       'ក្រុមការងាររបស់យើងជ្រើសរើស និងពិនិត្យទំនិញនីមួយៗ មុនវេចខ្ចប់ជូនអ្នក។';
 
   @override
-  String get gapBadge => 'កម្ពុជា GAP';
-
-  @override
   String get deliveryTitle => 'ដឹកជញ្ជូនដល់ផ្ទះ';
 
   @override
@@ -1613,6 +1610,12 @@ class AppLocalizationsKm extends AppLocalizations {
   @override
   String get checkoutNeedLocation =>
       'សូមដៅទីតាំងដឹកជញ្ជូនលើផែនទី ដើម្បីឱ្យអ្នកដឹកអាចរកអ្នកឃើញ។';
+
+  @override
+  String get orderSuccessPaidAba => 'ABA KHQR · បានបង់ប្រាក់';
+
+  @override
+  String get orderSuccessTotalPaid => 'សរុបបានបង់';
 
   @override
   String get orderSuccessTitle => 'បានបញ្ជាទិញរួចរាល់!';

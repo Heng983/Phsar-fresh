@@ -15,11 +15,15 @@ class OrderPlacedSheet extends StatelessWidget {
   final String total;
   final String payment;
 
+  /// Already paid (ABA KHQR): "Total paid" instead of "Total amount due".
+  final bool paid;
+
   const OrderPlacedSheet({
     super.key,
     required this.code,
     required this.total,
     required this.payment,
+    this.paid = false,
   });
 
   static Future<OrderPlacedAction?> show(
@@ -27,6 +31,7 @@ class OrderPlacedSheet extends StatelessWidget {
     required String code,
     required String total,
     required String payment,
+    bool paid = false,
   }) {
     HapticFeedback.mediumImpact();
     return showModalBottomSheet<OrderPlacedAction>(
@@ -37,8 +42,12 @@ class OrderPlacedSheet extends StatelessWidget {
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(AppRadius.xl)),
       ),
-      builder: (_) =>
-          OrderPlacedSheet(code: code, total: total, payment: payment),
+      builder: (_) => OrderPlacedSheet(
+        code: code,
+        total: total,
+        payment: payment,
+        paid: paid,
+      ),
     );
   }
 
@@ -89,7 +98,12 @@ class OrderPlacedSheet extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 22),
-              _OrderFacts(code: code, total: total, payment: payment),
+              _OrderFacts(
+                code: code,
+                total: total,
+                payment: payment,
+                paid: paid,
+              ),
               const SizedBox(height: 18),
               const _NextSteps(),
               const SizedBox(height: 24),
@@ -184,11 +198,13 @@ class _OrderFacts extends StatefulWidget {
   final String code;
   final String total;
   final String payment;
+  final bool paid;
 
   const _OrderFacts({
     required this.code,
     required this.total,
     required this.payment,
+    required this.paid,
   });
 
   @override
@@ -271,7 +287,9 @@ class _OrderFactsState extends State<_OrderFacts> {
             child: Divider(height: 1, color: AppColors.divider),
           ),
           _FactRow(
-            label: l10n.checkoutTotalDue,
+            label: widget.paid
+                ? l10n.orderSuccessTotalPaid
+                : l10n.checkoutTotalDue,
             value: widget.total,
             strong: true,
           ),

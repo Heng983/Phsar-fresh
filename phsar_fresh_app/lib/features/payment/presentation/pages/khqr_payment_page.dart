@@ -119,9 +119,24 @@ class _KhqrPaymentPageState extends ConsumerState<KhqrPaymentPage>
         _poll?.cancel();
         _tick?.cancel();
       }
+      _closeIfPaid();
     } on PaymentException {
       // Network blip: keep polling.
     }
+  }
+
+  bool _closing = false;
+
+  /// Paid: show the tick for a moment, then return to checkout, which shows
+  /// the same "Order placed!" sheet as cash on delivery.
+  void _closeIfPaid() {
+    if (_closing || !(_payment?.isPaid ?? false)) return;
+    _closing = true;
+    _poll?.cancel();
+    _tick?.cancel();
+    Future<void>.delayed(const Duration(milliseconds: 900), () {
+      if (mounted) Navigator.of(context).pop(true);
+    });
   }
 
   Future<void> _renew() async {
@@ -160,6 +175,7 @@ class _KhqrPaymentPageState extends ConsumerState<KhqrPaymentPage>
         _payment = next;
         _busy = false;
       });
+      _closeIfPaid();
     } on PaymentException catch (e) {
       if (!mounted) return;
       setState(() {

@@ -118,11 +118,23 @@ class CheckoutPage extends ConsumerWidget {
         if (cancelled) cart.replaceAll(basket);
         if (!context.mounted) return;
         ref.invalidate(remoteOrdersProvider);
+        if (paid == true) {
+          final action = await OrderPlacedSheet.show(
+            context,
+            code: order.code,
+            total: price(order.totalInCents),
+            payment: l10n.orderSuccessPaidAba,
+            paid: true,
+          );
+          if (action == OrderPlacedAction.track) {
+            ref.read(marketTabRequestProvider.notifier).open(MarketTab.orders);
+          }
+          if (!context.mounted) return;
+        }
         Navigator.of(context).maybePop();
         return;
       }
       ref.read(marketCartProvider.notifier).clear();
-      // The new order shows up in the Orders tab straight away.
       ref.invalidate(remoteOrdersProvider);
       final action = await OrderPlacedSheet.show(
         context,
