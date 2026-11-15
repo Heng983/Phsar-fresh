@@ -23,7 +23,9 @@ import { validateEnv } from "./common/env.validation";
     // Per client IP. Generous by default because many phones share one IP on
     // Cambodian mobile networks; login, OTP, codes and chat have their own
     // tighter limits. Override with THROTTLE_LIMIT.
-    ThrottlerModule.forRoot([{ ttl: 60_000, limit: Number(process.env.THROTTLE_LIMIT ?? 300) }]),
+    ThrottlerModule.forRoot([
+      { ttl: 60_000, limit: Number(process.env.THROTTLE_LIMIT ?? 300) },
+    ]),
     PrismaModule,
     RedisModule,
     AuthModule,

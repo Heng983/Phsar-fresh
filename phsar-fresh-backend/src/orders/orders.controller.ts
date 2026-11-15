@@ -1,6 +1,6 @@
 import {
-  Body, ConflictException, Controller, Get, HttpCode, Injectable, Module, NotFoundException, Param, ParseUUIDPipe, Post,
-  UseGuards,
+  Body, ConflictException, Controller, Get, HttpCode, Injectable, Logger, Module, NotFoundException, OnModuleDestroy,
+  OnModuleInit, Param, ParseUUIDPipe, Post, UseGuards,
 } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
 import { ApiBearerAuth, ApiTags } from "@nestjs/swagger";
@@ -13,6 +13,7 @@ import { DiscountsService } from "../discounts/discounts.service";
 import { PaymentsModule } from "../payments/payments.controller";
 import { PaymentsService, PublicPayment, toPublicPayment } from "../payments/payments.service";
 import { PrismaService } from "../prisma/prisma.service";
+import { CacheService } from "../redis/redis.module";
 import { toPublicProduct } from "../products/product.mapper";
 import { CreateOrderDto } from "./dto/create-order.dto";
 import { logOrderEvent } from "./order-events";
@@ -65,16 +66,71 @@ const toCustomerOrder = (o: Row) => ({
 });
 
 @Injectable()
-export class OrdersService {
+export class OrdersService implements OnModuleInit, OnModuleDestroy {
+  private readonly log = new Logger("Orders");
   private readonly deliveryCents: number;
+  /** An ABA Pay order not paid within this time is cancelled and its stock goes back. */
+  private readonly unpaidMinutes: number;
+  private sweep?: NodeJS.Timeout;
 
   constructor(
     private readonly prisma: PrismaService,
     private readonly discounts: DiscountsService,
     private readonly payments: PaymentsService,
+    private readonly cache: CacheService,
     config: ConfigService,
   ) {
     this.deliveryCents = Number(config.get("DELIVERY_FEE_CENTS") ?? 100);
+    this.unpaidMinutes = Number(config.get("ABA_UNPAID_CANCEL_MINUTES") ?? 30);
+  }
+
+  onModuleInit() {
+    // Every 5 minutes; also once shortly after start-up.
+    const every = Number(process.env.ABA_UNPAID_SWEEP_SECONDS ?? 300) * 1000;
+    this.sweep = setInterval(() => void this.cancelAbandoned(), every);
+    this.sweep.unref();
+    setTimeout(() => void this.cancelAbandoned(), 10_000).unref();
+  }
+
+  onModuleDestroy() {
+    if (this.sweep) clearInterval(this.sweep);
+  }
+
+  /**
+   * An unpaid ABA Pay order holds its stock. If the customer closed the app
+   * (or lost signal) and never paid or cancelled, nobody else could buy those
+   * items. After ABA_UNPAID_CANCEL_MINUTES the order is cancelled for them and
+   * the stock, once-per-customer code and QR are released — unless PayWay
+   * says it was paid after all.
+   */
+  async cancelAbandoned() {
+    try {
+      const cutoff = new Date(Date.now() - this.unpaidMinutes * 60_000);
+      const stale = await this.prisma.order.findMany({
+        where: { paymentMethod: "ABA_PAY", status: "PENDING", createdAt: { lt: cutoff } },
+        include,
+        take: 50,
+      });
+      let released = 0;
+      for (const order of stale) {
+        // Paid a moment ago? Then it stays (and becomes PAID).
+        if ((await this.payments.settle(order.id))?.status === "APPROVED") continue;
+        const done = await this.prisma.$transaction(async (tx) => {
+          const moved = await tx.order.updateMany({ where: { id: order.id, status: "PENDING" }, data: { status: "CANCELLED" } });
+          if (moved.count === 0) return false; // paid or cancelled meanwhile
+          await logOrderEvent(tx, order.id, "CANCELLED", { system: "Phsar Fresh" }, "SYSTEM", `Not paid within ${this.unpaidMinutes} minutes`);
+          await releaseOrder(tx, order.id, order.items);
+          return true;
+        });
+        if (done) released++;
+      }
+      if (released > 0) {
+        await this.cache.bump("catalog", "dashboard"); // stock changed
+        this.log.log(`cancelled ${released} unpaid ABA order(s) and returned their stock`);
+      }
+    } catch (e) {
+      this.log.warn(`unpaid-order sweep failed: ${(e as Error).message}`);
+    }
   }
 
   /**
@@ -187,6 +243,7 @@ export class OrdersService {
       await releaseOrder(tx, id, order.items);
       return tx.order.findUniqueOrThrow({ where: { id }, include });
     });
+    await this.cache.bump("catalog", "dashboard"); // the stock is back for sale
     return toCustomerOrder(cancelled);
   }
 }

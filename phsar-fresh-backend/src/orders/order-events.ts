@@ -2,7 +2,7 @@ import { OrderStatus, Prisma, Role } from "@prisma/client";
 
 type Db = Prisma.TransactionClient;
 
-export type EventSource = "APP" | "ADMIN" | "PAYWAY";
+export type EventSource = "APP" | "ADMIN" | "PAYWAY" | "SYSTEM";
 
 /**
  * Appends to an order's activity log. Call it inside the same transaction as
