@@ -56,6 +56,29 @@ class _ProductDetailPageState extends ConsumerState<ProductDetailPage> {
     _pack = _detail.defaultPack;
   }
 
+  ScaffoldMessengerState? _messenger;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _messenger = ScaffoldMessenger.maybeOf(context);
+  }
+
+  @override
+  void dispose() {
+    // The "Added to cart" note belongs to this page: don't let it follow
+    // the shopper back to the list. The tree is locked during dispose, so
+    // clear it right after this frame.
+    final messenger = _messenger;
+    if (messenger != null) {
+      WidgetsBinding.instance.addPostFrameCallback(
+        (_) => messenger.removeCurrentSnackBar(),
+      );
+      WidgetsBinding.instance.scheduleFrame();
+    }
+    super.dispose();
+  }
+
   int get _priceInCents => _pack?.priceInCents ?? widget.product.priceInCents;
 
   String _unitLabel(AppLocalizations l10n) =>
@@ -66,6 +89,12 @@ class _ProductDetailPageState extends ConsumerState<ProductDetailPage> {
         .read(marketCartProvider.notifier)
         .add(widget.product, quantity: _quantity, pack: _pack);
     HapticFeedback.lightImpact();
+    AppSnackBar.show(
+      context,
+      message: context.l10n.marketAddedToCart,
+      icon: Icons.shopping_basket_rounded,
+      tone: AppSnackBarTone.success,
+    );
   }
 
   Future<void> _copyProduct() async {

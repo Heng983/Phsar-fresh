@@ -202,8 +202,6 @@ class _AddButton extends ConsumerWidget {
         onTap: !enabled
             ? null
             : () {
-                // The count bubble, cart badge and mini-cart bar already
-                // confirm the add; a light tap replaces the snackbar.
                 ref.read(marketCartProvider.notifier).add(product);
                 HapticFeedback.lightImpact();
               },
