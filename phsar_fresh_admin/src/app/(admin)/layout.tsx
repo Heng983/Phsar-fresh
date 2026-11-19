@@ -43,11 +43,13 @@ export default async function AdminLayout({ children }: { children: React.ReactN
     ...(access.can("team.manage") ? [{ group: t.admin }, { href: "/team", label: t.team, icon: "users" } as const] : []),
   ];
 
-  // New-order bell, pop-up and sound for everyone who handles orders.
+  // New-order bell, pop-up and sound for everyone who handles orders;
+  // drivers get live updates of their delivery list without the bell.
   const alerts = access.can("orders.view");
+  const live = alerts || access.can("orders.deliver");
 
   return (
-    <OrderAlertsProvider enabled={alerts}>
+    <OrderAlertsProvider enabled={alerts} live={live}>
     <div className="pf-shell">
       <MobileBar badge={pending} action={alerts ? <AlertBell /> : undefined} />
       <aside className="pf-sidebar" aria-label={d.common.menu}>

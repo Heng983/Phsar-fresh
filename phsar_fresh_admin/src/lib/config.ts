@@ -1,5 +1,7 @@
 export const API_URL = process.env.API_URL ?? "http://localhost:3000/api/v1";
 export const ASSET_URL = process.env.NEXT_PUBLIC_ASSET_URL ?? "http://localhost:3000";
+/** The NestJS server, for the live connection (Socket.io) from the browser. Defaults to ASSET_URL. */
+export const SOCKET_URL = process.env.NEXT_PUBLIC_SOCKET_URL || ASSET_URL;
 export const LOW_STOCK = 10; // keep in sync with LOW_STOCK in the backend's admin.decorator.ts
 
 /** Product images are either full URLs (seed data) or /uploads/... paths on the API server. */
