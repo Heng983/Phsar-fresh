@@ -14,6 +14,7 @@ import { DiscountsModule } from "./discounts/discounts.controller";
 import { OrdersModule } from "./orders/orders.controller";
 import { PaymentsModule } from "./payments/payments.controller";
 import { NotificationsModule } from "./notifications/notifications.controller";
+import { RealtimeModule } from "./realtime/realtime.module";
 import { CacheBustInterceptor } from "./common/cache-bust.interceptor";
 import { validateEnv } from "./common/env.validation";
 
@@ -28,6 +29,7 @@ import { validateEnv } from "./common/env.validation";
     ]),
     PrismaModule,
     RedisModule,
+    RealtimeModule,
     AuthModule,
     ProductsModule,
     CategoriesModule,

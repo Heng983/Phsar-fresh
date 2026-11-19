@@ -85,8 +85,20 @@ export class CacheService {
     }
   }
 
-  async setJson(key: string, value: unknown, ttlSeconds: number) {
-    await this.quick(() => this.redis.set(key, JSON.stringify(value), "EX", ttlSeconds));
+  /** True when Redis stored it (false while Redis is down). */
+  async setJson(key: string, value: unknown, ttlSeconds: number): Promise<boolean> {
+    return (await this.quick(() => this.redis.set(key, JSON.stringify(value), "EX", ttlSeconds))) === "OK";
+  }
+
+  /** Reads a key and deletes it in one step, so it can only be used once. */
+  async takeJson<T>(key: string): Promise<T | null> {
+    const res = await this.quick(() => this.redis.multi().get(key).del(key).exec());
+    const raw = res?.[0]?.[1];
+    try {
+      return typeof raw === "string" ? (JSON.parse(raw) as T) : null;
+    } catch {
+      return null;
+    }
   }
 
   async del(key: string) {

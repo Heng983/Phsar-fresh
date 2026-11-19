@@ -14,6 +14,7 @@ import { PaymentsModule } from "../payments/payments.controller";
 import { PaymentsService, PublicPayment, toPublicPayment } from "../payments/payments.service";
 import { PrismaService } from "../prisma/prisma.service";
 import { CacheService } from "../redis/redis.module";
+import { RealtimeService } from "../realtime/realtime.service";
 import { toPublicProduct } from "../products/product.mapper";
 import { CreateOrderDto } from "./dto/create-order.dto";
 import { logOrderEvent } from "./order-events";
@@ -78,6 +79,7 @@ export class OrdersService implements OnModuleInit, OnModuleDestroy {
     private readonly discounts: DiscountsService,
     private readonly payments: PaymentsService,
     private readonly cache: CacheService,
+    private readonly realtime: RealtimeService,
     config: ConfigService,
   ) {
     this.deliveryCents = Number(config.get("DELIVERY_FEE_CENTS") ?? 100);
@@ -122,7 +124,10 @@ export class OrdersService implements OnModuleInit, OnModuleDestroy {
           await releaseOrder(tx, order.id, order.items);
           return true;
         });
-        if (done) released++;
+        if (done) {
+          released++;
+          this.realtime.orderChanged(order.id, "CANCELLED");
+        }
       }
       if (released > 0) {
         await this.cache.bump("catalog", "dashboard"); // stock changed
@@ -200,6 +205,10 @@ export class OrdersService implements OnModuleInit, OnModuleDestroy {
         await logOrderEvent(tx, created.id, "PENDING", { userId }, "APP");
         return created;
       });
+      // Admin panel: the list refreshes; cash orders ring the bell now,
+      // ABA Pay orders once they're paid (PaymentsService).
+      this.realtime.orderChanged(order.id, order.status);
+      if (order.paymentMethod !== "ABA_PAY") this.realtime.orderNeedsStaff(order.id);
       const placed = toCustomerOrder(order);
       if (order.paymentMethod !== "ABA_PAY") return placed;
       // The order is saved either way; if PayWay fails the app shows
@@ -244,6 +253,7 @@ export class OrdersService implements OnModuleInit, OnModuleDestroy {
       return tx.order.findUniqueOrThrow({ where: { id }, include });
     });
     await this.cache.bump("catalog", "dashboard"); // the stock is back for sale
+    this.realtime.orderChanged(id, "CANCELLED");
     return toCustomerOrder(cancelled);
   }
 }

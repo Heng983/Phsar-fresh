@@ -1,5 +1,5 @@
 import {
-  BadRequestException, Body, ConflictException, Controller, ForbiddenException, Get, Injectable, NotFoundException,
+  BadRequestException, Body, ConflictException, Controller, ForbiddenException, Get, HttpCode, Injectable, NotFoundException,
   Param, ParseUUIDPipe, Patch, Post, Query,
 } from "@nestjs/common";
 import { ApiTags } from "@nestjs/swagger";
@@ -10,6 +10,8 @@ import { releaseOrder } from "../orders/orders.controller";
 import { AdminOnly, Can } from "./admin.decorator";
 import { logOrderEvent } from "../orders/order-events";
 import { PermissionsService } from "./permissions.service";
+import { alertSelect, toOrderAlert } from "../realtime/order-alert";
+import { RealtimeService } from "../realtime/realtime.service";
 import { AdminListOrdersDto, OrderAlertsDto, SendOrderMessageDto, UpdateOrderStatusDto } from "./dto/admin-order.dto";
 
 /**
@@ -51,7 +53,6 @@ const include = {
 } satisfies Prisma.OrderInclude;
 
 /** "PF-3F9A2C", as the app and receipts show it. */
-export const orderCode = (id: string) => `PF-${id.slice(0, 6).toUpperCase()}`;
 
 type Row = Prisma.OrderGetPayload<{ include: typeof include }>;
 
@@ -140,7 +141,11 @@ function toAdminOrder(o: Row, rights: StatusRights) {
 
 @Injectable()
 export class AdminOrdersService {
-  constructor(private readonly prisma: PrismaService, private readonly permissions: PermissionsService) {}
+  constructor(
+    private readonly prisma: PrismaService,
+    private readonly permissions: PermissionsService,
+    private readonly realtime: RealtimeService,
+  ) {}
 
   private async rights(role: string): Promise<StatusRights> {
     const perms = await this.permissions.forRole(role);
@@ -212,21 +217,11 @@ export class AdminOrdersService {
           { paymentMethod: "ABA_PAY", paidAt: { gt: since } },
         ],
       },
-      select: { id: true, totalCents: true, paymentMethod: true, createdAt: true, paidAt: true, recipientName: true, user: { select: { name: true, phone: true } } },
+      select: alertSelect,
       orderBy: { createdAt: "desc" },
       take: 20,
     });
-    return {
-      now: new Date(),
-      items: rows.map((o) => ({
-        id: o.id,
-        code: orderCode(o.id),
-        totalCents: o.totalCents,
-        paymentMethod: o.paymentMethod,
-        customer: o.recipientName || o.user.name || o.user.phone,
-        at: o.paymentMethod === "ABA_PAY" ? o.paidAt ?? o.createdAt : o.createdAt,
-      })),
-    };
+    return { now: new Date(), items: rows.map(toOrderAlert) };
   }
 
   /** A note to the customer; it shows in their app's bell. */
@@ -277,6 +272,7 @@ export class AdminOrdersService {
       }
       return tx.order.update({ where: { id }, data: { status, ...(cashCollected && { paidAt: new Date() }) }, include });
     });
+    this.realtime.orderChanged(id, status);
     return toAdminOrder(updated, rights);
   }
 }
@@ -285,7 +281,13 @@ export class AdminOrdersService {
 @AdminOnly()
 @Controller("admin/orders")
 export class AdminOrdersController {
-  constructor(private readonly orders: AdminOrdersService) {}
+  constructor(private readonly orders: AdminOrdersService, private readonly realtime: RealtimeService) {}
+
+  /** A one-minute, one-time pass for the admin panel's live connection (Socket.io /admin). */
+  @Can("orders.view", "orders.deliver")
+  @Post("live-ticket")
+  @HttpCode(200)
+  liveTicket(@CurrentUser() user: AuthUser) { return this.realtime.issueTicket(user.id); }
 
   /** Must stay above ":id" so "alerts" isn't read as an order id. */
   @Can("orders.view")

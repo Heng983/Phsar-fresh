@@ -3,6 +3,7 @@ import { Order, Payment } from "@prisma/client";
 import { randomBytes } from "crypto";
 import { logOrderEvent } from "../orders/order-events";
 import { PrismaService } from "../prisma/prisma.service";
+import { RealtimeService } from "../realtime/realtime.service";
 import { PaywayClient } from "./payway.client";
 
 /** 14 chars, unique, within PayWay's 20-char tran_id limit. */
@@ -29,7 +30,11 @@ export type PublicPayment = ReturnType<typeof toPublicPayment>;
 export class PaymentsService {
   private readonly log = new Logger("Payments");
 
-  constructor(private readonly prisma: PrismaService, private readonly payway: PaywayClient) {}
+  constructor(
+    private readonly prisma: PrismaService,
+    private readonly payway: PaywayClient,
+    private readonly realtime: RealtimeService,
+  ) {}
 
   /** A fresh KHQR for an unpaid ABA Pay order (a new tranId every time). */
   async startKhqr(order: Pick<Order, "id" | "totalCents" | "status" | "paymentMethod">) {
@@ -135,16 +140,24 @@ export class PaymentsService {
 
   private async markPaid(p: Payment, extra: Partial<Pick<Payment, "apv" | "bankRef" | "paymentType" | "payerBank">>) {
     const now = new Date();
-    return this.prisma.$transaction(async (tx) => {
+    let orderPaid = false;
+    const result = await this.prisma.$transaction(async (tx) => {
       const paid = await tx.payment.update({ where: { id: p.id }, data: { status: "APPROVED", paidAt: now, ...strip(extra) } });
       // Only a waiting order moves to PAID; a cancelled one stays cancelled (refund by hand).
       const moved = await tx.order.updateMany({ where: { id: p.orderId, status: "PENDING" }, data: { status: "PAID", paidAt: now } });
       if (moved.count > 0) {
+        orderPaid = true;
         const via = paid.paymentType ? ` · ${paid.paymentType}` : "";
         await logOrderEvent(tx, p.orderId, "PAID", { system: this.payway.mock ? "ABA PayWay (test)" : "ABA PayWay" }, "PAYWAY", `Payment ${paid.tranId}${via}`);
       }
       return paid;
     });
+    if (orderPaid) {
+      // Now it needs staff: ring the admin bell.
+      this.realtime.orderChanged(p.orderId, "PAID");
+      this.realtime.orderNeedsStaff(p.orderId);
+    }
+    return result;
   }
 
   private latest(orderId: string) {
