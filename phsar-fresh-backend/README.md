@@ -1,6 +1,6 @@
 # Phsar Fresh Backend
 
-The API for Phsar Fresh: NestJS + TypeScript, with PostgreSQL (Prisma) and Redis. It serves the Flutter app in `../phsar_fresh_app` and the web admin in `../phsar_fresh_admin`.
+The API for Phsar Fresh: NestJS + TypeScript, with PostgreSQL (Prisma), Redis and Socket.io for live admin updates. It serves the Flutter app in `../phsar_fresh_app` and the web admin in `../phsar_fresh_admin`.
 
 ## Requirements
 
@@ -74,6 +74,11 @@ npm run start:dev
 | `JWT_ACCESS_EXPIRES` | | Access token lifetime (default `15m`) |
 | `REFRESH_TTL_DAYS` | | How long a sign-in lasts (default `30`) |
 | `DELIVERY_FEE_CENTS` | | Delivery fee in US cents (default `100` = $1.00) |
+| `ABA_UNPAID_CANCEL_MINUTES` | | Unpaid ABA Pay orders are cancelled after this many minutes and their stock returns (default `30`) |
+| `CORS_ORIGINS` | | Browser addresses allowed to call the API and open the live connection, comma separated (e.g. `https://admin.example.com`). Empty = any origin in development, none in production |
+| `TRUST_PROXY` | | Number of proxies in front of the API (nginx, a load balancer), so rate limits use the real client IP |
+| `THROTTLE_LIMIT` | | Requests per minute per IP (default `300`) |
+| `DB_POOL_MAX` | | Database connections per server copy (default `10`) |
 | `PORT` | | API port (default `3000`) |
 
 Never commit `.env`; it is git-ignored. Only `.env.example` belongs in the repo.
@@ -95,6 +100,15 @@ PAYWAY_CALLBACK_URL=https://<your-tunnel>/api/v1/payments/payway/callback
 ```
 
 Without a callback, the app still finds out about payments by asking PayWay while the QR is on screen.
+
+**Live updates (Socket.io).** The admin panel connects to the `/admin` namespace on the same port as the API (`ws://localhost:3000/admin`). Because its login token is an httpOnly cookie, the panel first asks for a one-minute, one-use ticket with `POST /api/v1/admin/orders/live-ticket` and connects with `{ auth: { ticket } }`. The ticket is kept in Redis.
+
+| Event | Sent to | When |
+| --- | --- | --- |
+| `order:new` | staff with `orders.view` | a cash order is placed, or an ABA Pay order is paid |
+| `order:changed` | staff with `orders.view` or `orders.deliver` | any order is created, paid, moved or cancelled |
+
+Every connection is checked again each minute, so a disabled account or a role that lost access is disconnected. If you run more than one copy of the API, add the Socket.io Redis adapter so events reach every copy.
 
 **Admin accounts.** `create-admin` creates or resets an account directly, without SMS. To promote an account that already signed up in the app:
 
@@ -123,7 +137,7 @@ Roles: `SUPER_ADMIN` (default), `MANAGER`, `STAFF`, `DRIVER`. Add one as the las
 - Set `NODE_ENV=production`. This turns off Swagger, the dev SMS log and payment simulation.
 - **SMS is not built yet.** `src/sms/sms.service.ts` throws in production, so sign-up codes can't be sent until you connect an SMS provider there.
 - Use `npx prisma migrate deploy` instead of `prisma:migrate`.
-- Limit CORS to your own domains in `src/main.ts` (it currently allows any origin).
+- Set `CORS_ORIGINS` to your admin panel's address, otherwise its live connection is refused in production.
 - Use real PayWay credentials and a public HTTPS `PAYWAY_CALLBACK_URL`.
 
 ## Structure
@@ -141,5 +155,6 @@ src/
   orders/ payments/    checkout and ABA PayWay (KHQR)
   chat/                AI assistant (Gemini)
   admin/               routes for the web admin, with role permissions
+  realtime/            Socket.io gateway and live order events for the admin
   notifications/
 ```

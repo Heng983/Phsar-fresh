@@ -5,15 +5,15 @@ A grocery delivery platform for Cambodia: customers shop fresh local produce in 
 | Folder | What it is | Built with |
 | --- | --- | --- |
 | [`phsar_fresh_app`](phsar_fresh_app) | Customer mobile app (iOS & Android) | Flutter, Riverpod, Dio, Google Maps |
-| [`phsar-fresh-backend`](phsar-fresh-backend) | REST API | NestJS 12, TypeScript, PostgreSQL (Prisma 7), Redis |
-| [`phsar_fresh_admin`](phsar_fresh_admin) | Admin panel for staff | Next.js 16 (App Router), React 19, TypeScript |
+| [`phsar-fresh-backend`](phsar-fresh-backend) | REST API + live updates | NestJS 12, TypeScript, PostgreSQL (Prisma 7), Redis, Socket.io |
+| [`phsar_fresh_admin`](phsar_fresh_admin) | Admin panel for staff | Next.js 16 (App Router), React 19, TypeScript, Socket.io client |
 
 ```
- Flutter app ──┐                     ┌── PostgreSQL (orders, products, users)
-               ├──►  NestJS API  ────┤
- Next.js admin ┘   /api/v1           └── Redis (OTP codes, cache)
-                       │
-                       └──► ABA PayWay (KHQR payments + callback)
+ Flutter app ──────────► NestJS API ──────┬── PostgreSQL (orders, products, users)
+                          /api/v1         └── Redis (OTP codes, cache, live tickets)
+ Next.js admin ─ server ──►  │  │
+       │                     │  └──► ABA PayWay (KHQR payments + callback)
+       └─ browser ◄── Socket.io /admin (live order updates)
 ```
 
 ## Features
@@ -31,7 +31,8 @@ A grocery delivery platform for Cambodia: customers shop fresh local produce in 
 **Admin panel**
 - Dashboard: revenue, orders, top products, low stock
 - Products, stock, categories, photos; banners, deals and discount codes
-- Orders: status flow (pending → preparing → out for delivery → delivered), activity log, new-order alerts with sound
+- Orders: status flow (pending → preparing → out for delivery → delivered), activity log
+- **Live updates (Socket.io):** new orders ring the bell with a pop-up and sound the moment they're placed (cash) or paid (ABA); order lists, counts and drivers' deliveries refresh on their own. Falls back to checking every 10 s if the connection drops
 - Message the customer about an order (quick templates); cancelling asks for a reason
 - Team and roles (Super admin, Manager, Staff, Delivery) with editable permissions
 - English / Khmer, light / dark theme, works on phone, tablet and laptop
@@ -40,6 +41,8 @@ A grocery delivery platform for Cambodia: customers shop fresh local produce in 
 - JWT access tokens and rotating refresh tokens; per-role permissions checked on every route
 - Server-side prices and stock checks inside one transaction (no overselling)
 - ABA PayWay KHQR with a signed callback and a test mode (`PAYWAY_MOCK=true`)
+- Unpaid ABA orders are cancelled after 30 minutes and their stock goes back on sale
+- Socket.io gateway for the admin panel, signed in with one-time tickets and limited by role
 - Redis caching, rate limits, gzip, consistent error responses with request IDs
 
 ## Run it locally
@@ -68,6 +71,8 @@ npm install
 cp .env.example .env.local
 npm run dev                   # http://localhost:3001 — sign in with the admin you created
 ```
+
+Click the bell: it shows **● Live** when the live connection to the API is up.
 
 ### 3. Mobile app (`phsar_fresh_app`)
 
