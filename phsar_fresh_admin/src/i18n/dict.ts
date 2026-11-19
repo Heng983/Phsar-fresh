@@ -321,6 +321,10 @@ const en = {
     soundOff: "Sound off",
     dismiss: "Dismiss",
     paidAba: "Paid with ABA",
+    live: "Live",
+    offline: "Reconnecting…",
+    liveHint: "New orders and status changes appear instantly.",
+    offlineHint: "No live connection right now. Checking for new orders every 10 seconds.",
   },
   team: {
     title: "Team & roles",
@@ -852,6 +856,10 @@ const km: Dict = {
     soundOff: "បិទសំឡេង",
     dismiss: "បិទ",
     paidAba: "បានបង់តាម ABA",
+    live: "ផ្ទាល់",
+    offline: "កំពុងភ្ជាប់ឡើងវិញ…",
+    liveHint: "ការបញ្ជាទិញថ្មី និងការប្តូរស្ថានភាព បង្ហាញភ្លាមៗ។",
+    offlineHint: "មិនទាន់មានការភ្ជាប់ផ្ទាល់ទេ។ កំពុងពិនិត្យការបញ្ជាទិញថ្មីរៀងរាល់ 10 វិនាទី។",
   },
   team: {
     title: "ក្រុមការងារ និងតួនាទី",

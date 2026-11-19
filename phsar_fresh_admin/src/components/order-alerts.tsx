@@ -3,13 +3,21 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { createContext, useCallback, useContext, useEffect, useRef, useState, type ReactNode } from "react";
-import { fetchOrderAlerts } from "@/app/(admin)/alerts-actions";
+import { io, type Socket } from "socket.io-client";
+import { fetchLiveTicket, fetchOrderAlerts } from "@/app/(admin)/alerts-actions";
 import { useDict, useLang } from "@/i18n/client";
+import { SOCKET_URL } from "@/lib/config";
 import { money } from "@/lib/format";
 import type { OrderAlert } from "@/lib/types";
 import { Icon } from "./icon";
 
+/** Without a live connection, ask every 10 s; with one, once a minute as a safety net. */
 const POLL_MS = 10_000;
+const LIVE_POLL_MS = 60_000;
+/** Many changes at once (a busy minute) → one refresh. */
+const REFRESH_DEBOUNCE_MS = 800;
+/** The server refused the connection (e.g. Redis down): try again after this. */
+const REFUSED_RETRY_MS = 15_000;
 const TOAST_MS = 12_000;
 const KEEP = 20;
 const SINCE_KEY = "pf_alerts_since";
@@ -25,6 +33,8 @@ interface AlertsState {
   markRead: (id: string) => void;
   muted: boolean;
   toggleMute: () => void;
+  /** The live connection (Socket.io) is up. */
+  online: boolean;
 }
 
 const AlertsContext = createContext<AlertsState | null>(null);
@@ -65,20 +75,30 @@ function ding(ctx: AudioContext | null) {
 }
 
 /**
- * Watches for new orders while the admin panel is open: every 10 s it asks
- * the API what came in, then rings, shows a pop-up and adds it to the bell.
- * Cash orders count when placed, ABA Pay orders once they're paid.
+ * Live order news while the admin panel is open.
+ *
+ * - [live]: a Socket.io connection to the API. Every order change refreshes
+ *   the page data (lists, counts), so nobody has to press reload.
+ * - [enabled]: the bell. A cash order when placed, or an ABA Pay order once
+ *   it's paid, rings, pops up and is added to the bell.
+ *
+ * If the live connection is down, it falls back to asking every 10 s, and it
+ * always catches up on what it missed when it reconnects.
  */
-export function OrderAlertsProvider({ enabled, children }: { enabled: boolean; children: ReactNode }) {
+export function OrderAlertsProvider({ enabled, live = enabled, children }: { enabled: boolean; live?: boolean; children: ReactNode }) {
   const router = useRouter();
   const [unread, setUnread] = useState<OrderAlert[]>([]);
   const [toasts, setToasts] = useState<OrderAlert[]>([]);
   const [open, setOpen] = useState(false);
   const [muted, setMuted] = useState(false);
+  const [online, setOnline] = useState(false);
   const audio = useRef<AudioContext | null>(null);
   const mutedRef = useRef(false);
-  /** Every alert already shown, so a slow poll never rings twice. */
+  /** Every alert already shown, so a socket event and a poll never ring twice. */
   const seen = useRef(new Set<string>());
+  const socket = useRef<Socket | null>(null);
+  const lastPoll = useRef(0);
+  const refreshTimer = useRef<number | undefined>(undefined);
 
   useEffect(() => {
     const saved = read<OrderAlert[]>(UNREAD_KEY, []);
@@ -107,18 +127,17 @@ export function OrderAlertsProvider({ enabled, children }: { enabled: boolean; c
     };
   }, []);
 
-  useEffect(() => {
-    if (!enabled) return;
-    let stopped = false;
-    // First visit: only orders from now on, not the whole history.
-    let since = read<string | null>(SINCE_KEY, null) ?? new Date().toISOString();
-    const tick = async () => {
-      const res = await fetchOrderAlerts(since).catch(() => null);
-      if (stopped || !res) return;
-      since = res.now;
-      write(SINCE_KEY, since);
-      if (res.items.length === 0) return;
-      const fresh = res.items.filter((a) => !seen.current.has(a.id));
+  /** Re-render the server parts (order list, sidebar counts), once per burst. */
+  const refreshSoon = useCallback(() => {
+    window.clearTimeout(refreshTimer.current);
+    refreshTimer.current = window.setTimeout(() => router.refresh(), REFRESH_DEBOUNCE_MS);
+  }, [router]);
+  useEffect(() => () => window.clearTimeout(refreshTimer.current), []);
+
+  /** New orders for the bell, from the socket or from a poll. */
+  const take = useCallback(
+    (items: OrderAlert[]) => {
+      const fresh = items.filter((a) => !seen.current.has(a.id));
       if (fresh.length === 0) return;
       fresh.forEach((a) => seen.current.add(a.id));
       setUnread((prev) => {
@@ -128,15 +147,90 @@ export function OrderAlertsProvider({ enabled, children }: { enabled: boolean; c
       });
       setToasts((t) => [...fresh, ...t].slice(0, 3));
       if (!mutedRef.current) ding(audio.current);
-      router.refresh(); // order list and sidebar counts
-    };
-    void tick();
-    const id = window.setInterval(tick, POLL_MS);
+      refreshSoon();
+    },
+    [refreshSoon],
+  );
+
+  /** Asks the API what came in since the last check. */
+  const poll = useCallback(async () => {
+    lastPoll.current = Date.now();
+    // First visit: only orders from now on, not the whole history.
+    const since = read<string | null>(SINCE_KEY, null) ?? new Date().toISOString();
+    const res = await fetchOrderAlerts(since).catch(() => null);
+    if (!res) return;
+    write(SINCE_KEY, res.now);
+    take(res.items);
+  }, [take]);
+
+  // Bell: catch up now, then poll (rarely while the live connection is up).
+  useEffect(() => {
+    if (!enabled) return;
+    void poll();
+    const id = window.setInterval(() => {
+      const wait = socket.current?.connected ? LIVE_POLL_MS : POLL_MS;
+      if (Date.now() - lastPoll.current >= wait - 500) void poll();
+    }, POLL_MS);
+    return () => window.clearInterval(id);
+  }, [enabled, poll]);
+
+  // Live connection. The browser never sees the login token (httpOnly
+  // cookie), so each (re)connect asks the server for a one-minute pass.
+  const takeRef = useRef(take);
+  const pollRef = useRef(poll);
+  const enabledRef = useRef(enabled);
+  useEffect(() => {
+    takeRef.current = take;
+    pollRef.current = poll;
+    enabledRef.current = enabled;
+  });
+  useEffect(() => {
+    if (!live) return;
+    let stopped = false;
+    let retry: number | undefined;
+    const s = io(`${SOCKET_URL}/admin`, {
+      autoConnect: false,
+      // WebSocket first; long-polling if a proxy blocks it.
+      transports: ["websocket", "polling"],
+      tryAllTransports: true,
+      reconnectionDelay: 2_000,
+      reconnectionDelayMax: 30_000,
+      auth: (cb) => {
+        fetchLiveTicket()
+          .then((ticket) => cb({ ticket }))
+          .catch(() => cb({ ticket: null }));
+      },
+    });
+    socket.current = s;
+    s.on("connect", () => {
+      setOnline(true);
+      // Anything that happened while we were away.
+      if (enabledRef.current) void pollRef.current();
+      refreshSoon();
+    });
+    s.on("disconnect", () => setOnline(false));
+    s.on("connect_error", () => {
+      setOnline(false);
+      // Refused by the server (no pass): Socket.io won't retry by itself.
+      if (!s.active && !stopped) {
+        window.clearTimeout(retry);
+        retry = window.setTimeout(() => !stopped && s.connect(), REFUSED_RETRY_MS);
+      }
+    });
+    s.on("order:new", (alert: OrderAlert) => {
+      if (enabledRef.current) takeRef.current([alert]);
+    });
+    s.on("order:changed", () => refreshSoon());
+    s.connect();
     return () => {
       stopped = true;
-      window.clearInterval(id);
+      window.clearTimeout(retry);
+      s.removeAllListeners();
+      s.disconnect();
+      socket.current = null;
+      setOnline(false);
     };
-  }, [enabled, router]);
+  }, [live, refreshSoon]);
 
   // Each pop-up hides on its own after a while.
   useEffect(() => {
@@ -166,7 +260,7 @@ export function OrderAlertsProvider({ enabled, children }: { enabled: boolean; c
   }, []);
 
   return (
-    <AlertsContext.Provider value={{ unread, open, setOpen, markAllRead, markRead, muted, toggleMute }}>
+    <AlertsContext.Provider value={{ unread, open, setOpen, markAllRead, markRead, muted, toggleMute, online }}>
       {children}
       {enabled && open && <AlertsPanel />}
       {enabled && toasts.length > 0 && (
@@ -244,7 +338,13 @@ function AlertsPanel() {
   return (
     <div ref={panel} className="pf-alerts-panel" role="dialog" aria-label={t.title}>
       <div className="pf-alerts-head">
-        <strong>{t.title}</strong>
+        <span className="pf-alerts-title">
+          <strong>{t.title}</strong>
+          <span className={`pf-live${state.online ? " is-on" : ""}`} title={state.online ? t.liveHint : t.offlineHint}>
+            <span className="pf-live-dot" aria-hidden />
+            {state.online ? t.live : t.offline}
+          </span>
+        </span>
         <button type="button" className="pf-btn pf-btn-ghost pf-btn-sm" onClick={state.toggleMute} aria-pressed={!state.muted}>
           <Icon name={state.muted ? "volume-off" : "volume"} size={16} />
           {state.muted ? t.soundOff : t.soundOn}
